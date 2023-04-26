@@ -8,4 +8,3 @@ jobtech_dataset = pd.read_csv('jobtech_dataset2022.csv')
 df = jobtech_dataset[['id', 'description']]
 # #show the variables names (columns) in the dataset
 print(df)
-#show the first 3 rows (job postings) in the dataset
