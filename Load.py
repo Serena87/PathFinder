@@ -9,3 +9,11 @@ jobtech_dataset = pd.read_csv('jobtech_dataset2022.csv')
 print(jobtech_dataset.columns)
 #show the first 3 rows (job postings) in the dataset
 print(jobtech_dataset.head(3))
+
+
+
+# Wanted columns:
+# id
+# description
+# working_hours_type
+# 
