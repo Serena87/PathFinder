@@ -49,4 +49,4 @@ for word in variabel:
 
 #Prints our list of remaining, non-stop words
 
-#print(filtrerad_lista)
+print(filtrerad_lista)
