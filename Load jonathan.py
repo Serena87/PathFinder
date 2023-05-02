@@ -19,11 +19,16 @@ dataframe = jobtech_dataset[['id', 'description', 'occupation', 'occupation_fiel
 
 dataframe.info()
 
-dfsvenska = list
+dfsvenska = pd.DataFrame(columns=dataframe.columns)
 
-for n in dataframe:
-    detect('description')
-    if detect == 'se':
-        dfsvenska.append
-    else 
+# iterate over the rows of the original dataframe
+for index, row in dataframe.iterrows():
+    # detect the language of the description column using the langdetect library
+    if detect(row['description']) == 'sv':
+        # if the language is Swedish, append the row to the new dataframe
+        dfsvenska = dfsvenska.append(row, ignore_index=True)
 
+
+print(dfsvenska.columns)
+#show the first 3 rows (job postings) in the dataset
+print(dfsvenska.head(3))
