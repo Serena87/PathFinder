@@ -32,3 +32,4 @@ for index, row in dataframe.iterrows():
 print(dfsvenska.columns)
 #show the first 3 rows (job postings) in the dataset
 print(dfsvenska.head(3))
+dfsvenska.info()
