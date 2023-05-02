@@ -33,3 +33,6 @@ print(dfsvenska.columns)
 #show the first 3 rows (job postings) in the dataset
 print(dfsvenska.head(3))
 dfsvenska.info()
+
+# save the new dataframe to a CSV file
+dfsvenska.to_csv('dfsvenska.csv', index=False)
