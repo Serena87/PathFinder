@@ -1,17 +1,9 @@
 from flask import Flask
-  
+
 app = Flask(__name__)
-  
-# Pass the required route to the decorator.
-@app.route("/pathfinder")
+
+@app.route("pathfinder")
 def hello():
-    return (filtrerad_lista)
+    return "Hello, welcome to Pathfinder!"
+
     
-@app.route("/")
-def index():
-    return (filtrerad_lista)
-  
-if __name__ == "__app__":
-    app.run(debug=True)
-
-
