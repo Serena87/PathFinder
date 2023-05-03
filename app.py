@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from backend import get_words
+from backend import get_occupation
 
 app = Flask(__name__)
 
