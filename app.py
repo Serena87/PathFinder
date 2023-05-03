@@ -1,12 +1,15 @@
+
+
 from flask import Flask, render_template
+from backend import get_words
 
 app = Flask(__name__)
 
 @app.route('/pathfinder')
 def button_cluster():
     # Define the list of keywords to the buttons:
-    button_keywords = ["Musik", "Fotografera", "Design"]
-    button_templates = ["blue_button_template", "green_button_template", "orange_button_template"]
+    button_keywords = ["Musik", "Fotografera", "Design", "Social"]
+    #button_type = ["circle-blue", "circle-green", "circle-orange"]
 
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
@@ -38,6 +41,4 @@ def button_cluster():
 
 if __name__ == '__main__':
     app.run()
-
-
     
