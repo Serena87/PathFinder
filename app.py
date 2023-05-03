@@ -9,7 +9,8 @@ app = Flask(__name__)
 def button_cluster():
     # Define the list of keywords to the buttons:
     button_keywords = ["Musik", "Fotografera", "Design", "Social"]
-    #button_type = ["circle-blue", "circle-green", "circle-orange"]
+    #button_keywords = get_words()
+    button_templates = ["blue_button_template", "green_button_template", "orange_button_template"]
 
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
