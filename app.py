@@ -1,5 +1,3 @@
-
-    
 from flask import Flask, render_template
 from backend import get_words
 
