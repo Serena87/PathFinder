@@ -1,0 +1,203 @@
+<style>
+.button-container {
+    display: grid;
+    grid-template-columns: 9;
+    grid-template-rows: 9;
+    row-gap: none;
+    grid-gap: none;
+  
+    justify-content: center;
+    align-items: center;
+    /*height: 80vh; */
+    height: auto;
+      
+}
+
+
+.circle-blue {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #0E0064;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    
+  }
+  
+.circle-green {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #63BC44;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+    
+  }
+
+.circle-orange {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;       
+    background-color: #FFB39B;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+  
+  }
+/* Puts the buttons in their positions within the 9x9 grid, creating a round form.
+Starts with placing buttons in the centre and "grows" around the centre as the number
+of buttons increases. Maximum of 50 buttons. */
+.button-container :nth-child(1) {
+  grid-area: 5 / 5
+}
+.button-container :nth-child(2) {
+  grid-area: 4 / 5
+}
+.button-container :nth-child(3) {
+  grid-area: 4 / 6
+}
+.button-container :nth-child(4) {
+  grid-area: 5 / 6
+}
+.button-container :nth-child(5) {
+  grid-area: 6 / 6
+}
+.button-container :nth-child(6) {
+  grid-area: 6 / 5
+}
+.button-container :nth-child(7) {
+  grid-area: 6 / 4
+}
+.button-container :nth-child(8) {
+  grid-area: 5 / 4
+}
+.button-container :nth-child(9) {
+  grid-area: 4 / 4
+}
+.button-container :nth-child(10) {
+  grid-area: 3 / 4
+}
+.button-container :nth-child(11) {
+  grid-area: 3 / 6
+}
+.button-container :nth-child(12) {
+  grid-area: 3 / 5
+}
+.button-container :nth-child(13) {
+  grid-area: 3 / 7
+}
+.button-container :nth-child(14) {
+  grid-area: 4 / 7
+}
+.button-container :nth-child(15) {
+  grid-area: 5 / 7
+}
+.button-container :nth-child(16) {
+  grid-area: 6 / 7
+}
+.button-container :nth-child(17) {
+  grid-area: 7 / 5
+}
+.button-container :nth-child(18) {
+  grid-area: 7 / 6
+}
+.button-container :nth-child(19) {
+  grid-area: 7 / 4 
+}
+.button-container :nth-child(20) {
+  grid-area: 6 / 3 
+}
+.button-container :nth-child(21) {
+  grid-area: 5 / 3
+}
+.button-container :nth-child(22) {
+  grid-area: 4 / 3 
+}
+.button-container :nth-child(23) {
+  grid-area: 2 / 5 
+}
+.button-container :nth-child(24) {
+  grid-area: 2 / 6
+}
+.button-container :nth-child(25) {
+  grid-area: 4 / 8 
+}
+.button-container :nth-child(26) {
+  grid-area: 5 / 8 
+}
+.button-container :nth-child(27) {
+  grid-area: 8 / 5 
+}
+.button-container :nth-child(28) {
+  grid-area: 5 / 2 
+}
+.button-container :nth-child(29) {
+  grid-area: 3 / 3
+}
+.button-container :nth-child(30) {
+  grid-area: 7 / 3 
+}
+.button-container :nth-child(31) {
+  grid-area: 1 / 5
+}
+.button-container :nth-child(32) {
+  grid-area: 3 / 2 
+}
+.button-container :nth-child(33) {
+  grid-area: 2 / 4 
+}
+.button-container :nth-child(34) {
+  grid-area: 4 / 1
+}
+.button-container :nth-child(35) {
+  grid-area: 6 / 8 
+}
+.button-container :nth-child(36) {
+  grid-area: 7 / 7
+}
+.button-container :nth-child(37) {
+  grid-area: 8 / 6 
+}
+.button-container :nth-child(38) {
+  grid-area: 8 / 4 
+}
+.button-container :nth-child(39) {
+  grid-area: 5 / 9
+}
+.button-container :nth-child(40) {
+  grid-area: 7 / 2 
+}
+.button-container :nth-child(41) {
+  grid-area: 4 / 2
+}
+.button-container :nth-child(42) {
+  grid-area: 1 / 6 
+}
+.button-container :nth-child(43) {
+  grid-area: 2 / 7 
+}
+.button-container :nth-child(44) {
+  grid-area: 3 / 8 
+}
+.button-container :nth-child(45) {
+  grid-area: 4 / 9  
+}
+.button-container :nth-child(46) {
+  grid-area: 9 / 5 
+}
+.button-container :nth-child(47) {
+  grid-area: 5 / 1 
+}
+.button-container :nth-child(48) {
+  grid-area: 6 / 2
+}
+.button-container :nth-child(49) {
+  grid-area: 8 / 3 
+}
+.button-container :nth-child(50) {
+  grid-area: 9 / 4 
+}
+</style>

@@ -1,45 +1,75 @@
 <style>
-.button-cluster {
-    text-align: center;
+.button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+   
+    
+}
+.button-cluster {
+    
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    
+  
   }
 
 .circle-blue {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     background-color: #0E0064;
     color: white;
     cursor: pointer;
-    margin: none;
-    float: left;
     font-size: 16px;
+    text-align: center;
+    
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
   }
   
 .circle-green {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     background-color: #63BC44;
     color: black;
     cursor: pointer;
-    margin: none;
-    float: left;
     font-size: 16px;
+
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
   }
 
 .circle-orange {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;       
     background-color: #FFB39B;
     color: black;
     cursor: pointer;
-    margin: none;
-    float: left;
     font-size: 16px;
+
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
   }
 </style>
