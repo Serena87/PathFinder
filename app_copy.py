@@ -4,11 +4,12 @@ from backend import get_words
 app = Flask(__name__)
 
 @app.route('/pathfinder')
+
 def button_cluster():
     # Define the list of keywords to the buttons:
     #button_keywords = get_words()
  
-    # For adjusting the buttons, easier with numbers
+    # For adjusting the buttons, easier with 50 numbers
     button_keywords = []
     for i in range(1, 51):
         button_keywords.append(str(i))
@@ -25,16 +26,12 @@ def button_cluster():
         orange_button_template = forange.read()
 
     # Read the CSS code from the stylesheet:
-    #with open('templates/style.css', 'r') as stylesheet:
-       #css_read = stylesheet.read()
-
     with open('templates/style copy.css', 'r') as stylesheet:
         css_read = stylesheet.read()
 
     # Generate the HTML code for the button cluster
     html = "<!DOCTYPE html><html><head>"
     html += css_read
-    #html += "</head><body><div class='button-cluster'>"
     html += "</head><body><div class='button-container'>"
     for i, name in enumerate(button_keywords):
         template_index = i % len(button_templates)
