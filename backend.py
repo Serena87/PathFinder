@@ -1,8 +1,14 @@
+#HEJ Front-end!!
+# Ropa på get_words för en lista av ord skapad av en människa
+# Ropa på extract_common_words för en lista av 50 ord skapat av en algoritm :D
+# Ropa på get_occupation och get_occupation2 och skicka in 3 ord och få tillbaka en lista på 5 yrken
+
+
+
+
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.neural_network import MLPClassifier
-from sklearn.pipeline import Pipeline
 #Skickar ord att fylla bubblorna med till frontend
 lista = ['Noggran', 'Kreativ', 'Djur', 'Körkort', 'Positiv', 'Människor', 'Mat', 'Hållbarhet', 'Vårdande', 'Social', 'Försäljning']
 
@@ -13,8 +19,6 @@ def get_words():
 ##Takes three words and returns 5 matching occupations
 
 def get_occupation(word1, word2, word3):
-
-
 
     import pandas as pd
     from sklearn.feature_extraction.text import TfidfVectorizer
@@ -80,3 +84,36 @@ def get_occupation2(word1, word2, word3):
 
 print(get_occupation('säkerhet', 'social', 'människor'))
 print(get_occupation2('säkerhet', 'social', 'människor'))
+
+
+## Experiment
+
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords
+from collections import Counter
+import random
+
+def extract_common_words():
+    # load the dataset
+    df = pd.read_csv('clean_occup.csv')
+
+    # tokenize the descriptions
+    tokenizer = nltk.RegexpTokenizer(r'\w+')
+    df['tokens'] = df['description'].apply(lambda x: tokenizer.tokenize(x.lower()))
+
+    # remove stop words
+    stop_words = stopwords.words('swedish')
+    df['tokens'] = df['tokens'].apply(lambda x: [word for word in x if word not in stop_words])
+
+    # count the word frequency
+    word_counts = Counter([word for words in df['tokens'] for word in words])
+
+    # extract 50 random but common words
+    common_words = [word[0] for word in word_counts.most_common()]
+    random.shuffle(common_words)
+    common_words = common_words[:50]
+
+    return common_words
+
+print(extract_common_words())
