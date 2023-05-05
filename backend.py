@@ -10,11 +10,7 @@ def get_words():
     return(lista)
 
 
-
-
-
 ##Takes three words and returns 5 matching occupations
-
 
 def get_occupation(word1, word2, word3):
 
@@ -84,54 +80,3 @@ def get_occupation2(word1, word2, word3):
 
 print(get_occupation('säkerhet', 'social', 'människor'))
 print(get_occupation2('säkerhet', 'social', 'människor'))
-
-
-## Get words 2
-
-
-import pandas as pd
-import numpy as np
-import nltk
-from sklearn.feature_extraction.text import CountVectorizer
-
-
-
-# Load dataset
-
-import pandas as pd
-import numpy as np
-import nltk
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import CountVectorizer
-
-def extract_common_words():
-    # Download stopwords
-    nltk.download('stopwords')
-
-    # Load dataset
-    df = pd.read_csv('clean_occup.csv')
-
-    # Select a random sample of occupations
-    sample_df = df.sample(n=100)
-
-    # Create a count vectorizer object
-    vectorizer = CountVectorizer(stop_words=stopwords.words('english'))
-
-    # Fit and transform the count vectorizer on the occupation descriptions
-    count_matrix = vectorizer.fit_transform(sample_df['description'])
-
-    # Get the total count for each word in the count matrix
-    word_count = np.sum(count_matrix, axis=0)
-
-    # Convert the word count matrix to a list of tuples (word, count)
-    word_count_list = [(word, word_count[0, i]) for word, i in vectorizer.vocabulary_.items()]
-
-    # Sort the list of tuples by count in descending order
-    sorted_word_count_list = sorted(word_count_list, key=lambda x: x[1], reverse=True)
-
-    # Get the top 50 words
-    top_words = [word[0] for word in sorted_word_count_list[:50]]
-
-    return top_words
-
-print(extract_common_words())
