@@ -117,36 +117,4 @@ def extract_common_words():
 
     return common_words
 
-## Classifier
 
-import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-
-def classify_occupation(word1, word2, word3):
-    # Load the dataset into a pandas DataFrame
-    df = pd.read_csv('clean_occup.csv')
-
-    # Create a new column that concatenates the occupation and description columns
-    df['text'] = df['occupation'] + ' ' + df['description']
-
-    # Use CountVectorizer to create a bag of words representation of the text
-    vectorizer = CountVectorizer(stop_words='english')
-    X = vectorizer.fit_transform(df['text'])
-
-    # Split the data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, df['occupation'], test_size=0.2)
-
-    # Train a logistic regression model on the training data
-    model = LogisticRegression()
-    model.fit(X_train, y_train)
-
-    # Use the trained model to classify the occupations based on the three words entered
-    text = word1 + ' ' + word2 + ' ' + word3
-    text_transformed = vectorizer.transform([text])
-    prediction = model.predict(text_transformed)
-
-    return prediction[0]
-
-print(classify_occupation("säkerhet", "social", "människor"))
