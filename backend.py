@@ -10,11 +10,7 @@ def get_words():
     return(lista)
 
 
-
-
-
 ##Takes three words and returns 5 matching occupations
-
 
 def get_occupation(word1, word2, word3):
 
