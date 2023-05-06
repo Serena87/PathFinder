@@ -1,4 +1,26 @@
 <style>
+.center-container {
+    position: relative;
+    height: 80vh;
+}
+.center-content {        /* Content inside the container */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*Center the content horizontally and vertically */
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stacks the elements vertically */
+    align-items: center;       /* Centers the items horizontally and vertically */
+    justify-content: center;   /* same */
+}
+
+img { 
+   max-width: 100%; /* ensures that the logo doesn`t exceed the width of the container */
+   height: auto;
+   margin-bottom: 1rem; /* Provides some space between the logo and the text below */
+}
+
 .button-container {
     display: grid;
     grid-template-columns: 9;
@@ -11,7 +33,7 @@
     align-items: center;
     /*height: 80vh; */
     height: auto;
-      
+    margin-top: 1rem;  /* Provides some space between the buttons and the text above */
 }
 
 .circle-blue {
@@ -77,9 +99,10 @@
     color: black;
     cursor: pointer;
     font-size: 14px;
+ 
   }
 /*Clicked button*/
-.circle-orange:focus {
+.circle-orange:focus  {
   background-color:darkslategray;
   color: white;
 }
