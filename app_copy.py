@@ -10,8 +10,8 @@ def index():
     # Refer to/read the JavaScript file used: TODO DOESN`T WORK..
     #js_file = 'templates/button_listeners.js'
 
-    #with open('templates/button_listeners.js', 'r') as js:
-    #    js_read = js.read()
+    with open('templates/button_listeners.js', 'r') as js:
+        js_read = js.read()
 
     # Define the list of keywords to the buttons:
     #button_keywords = get_words()
@@ -33,14 +33,15 @@ def index():
 
     # Read the index html code from file:
     with open('templates/index_Stine.html', 'r') as index:
-        header_read = index.read()
-
+        header_read = index.read() # Read the index html code from file:
+    
     # Read the CSS code from the stylesheet:
     with open('templates/style copy.css', 'r') as stylesheet:
         css_read = stylesheet.read()
 
     # Generates the HTML code for the website:
     html = header_read
+    #html += js_read
     html += css_read
     html += "<div class='button-container'>"
     # Generates the keyword buttons: 
@@ -55,7 +56,7 @@ def index():
             button_html = orange_button_template.format(name=name)
         html += button_html
    
-    html += "</div></body><script src='templates/button_listeners.js'></script></html>"
+    html += "</div></body></html>"
 
     # Render the HTML code as a response
     return html
