@@ -1,11 +1,18 @@
 from flask import Flask, render_template
-from backend import get_words
+#from backend import get_words
 
 app = Flask(__name__)
 
 @app.route('/pathfinder')
 
-def button_cluster():
+
+def index():
+    # Refer to/read the JavaScript file used:
+    #js_file = 'templates/button_listeners.js'
+
+    with open('templates/button_listeners.js', 'r') as js:
+        js_read = js.read()
+
     # Define the list of keywords to the buttons:
     #button_keywords = get_words()
  
@@ -30,9 +37,13 @@ def button_cluster():
         css_read = stylesheet.read()
 
     # Generate the HTML code for the button cluster
+    #html = "<!DOCTYPE html><html><head>"
     html = "<!DOCTYPE html><html><head>"
     html += css_read
+    #html += js_read
+    html += "<title>PathFinder</title>"
     html += "</head><body><div class='button-container'>"
+    
     for i, name in enumerate(button_keywords):
         template_index = i % len(button_templates)
         template = button_templates[template_index]
@@ -43,10 +54,11 @@ def button_cluster():
         else:
             button_html = orange_button_template.format(name=name)
         html += button_html
-    html += "</div></body></html>"
+    #html += "</div></body></html>"
+    html += "</div></body><script src='templates/button_listeners.js'></script></html>"
 
     # Render the HTML code as a response
-    return html
-
+    #return html
+    return render_template('index_Stine.html')
 if __name__ == '__main__':
     app.run()

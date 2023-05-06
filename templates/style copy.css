@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 9;
     grid-template-rows: 9;
+    grid-auto-flow: dense;
     row-gap: none;
     grid-gap: none;
   
@@ -12,7 +13,6 @@
     height: auto;
       
 }
-
 
 .circle-blue {
     width: 80px;
@@ -25,7 +25,24 @@
     text-align: center;
     
   }
-  
+
+/*Clicked button*/
+.circle-blue:focus {
+  background-color:darkslategray;
+  color: white;
+}
+/* Color change when hovering over the button */
+.circle-blue:hover {
+  background-color: gray;
+  color: black;
+}
+/*Pressed effect */
+.circle-blue:active {
+  background-color: gray;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
 .circle-green {
     width: 80px;
     height: 80px;
@@ -36,7 +53,22 @@
     font-size: 14px;
     
   }
-
+/*Clicked button*/
+.circle-green:focus {
+  background-color:darkslategray;
+  color: white;
+}
+/* Color change when hovering over the button */
+.circle-green:hover {
+    background-color: gray;
+    color: black;
+  }
+/*Pressed effect */
+.circle-green:active {
+  background-color: gray;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
 .circle-orange {
     width: 80px;
     height: 80px;
@@ -45,8 +77,24 @@
     color: black;
     cursor: pointer;
     font-size: 14px;
-  
   }
+/*Clicked button*/
+.circle-orange:focus {
+  background-color:darkslategray;
+  color: white;
+}
+/* Color change when hovering over the button */
+.circle-orange:hover {
+    background-color: gray;
+    color: black;
+  }
+/*Pressed effect */
+.circle-orange:active {
+  background-color: gray;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
 /* Puts the buttons in their positions within the 9x9 grid, creating a round form.
 Starts with placing buttons in the centre and "grows" around the centre as the number
 of buttons increases. Maximum of 50 buttons. */
