@@ -1,6 +1,7 @@
 
 // Get references to the buttons
-const buttons = document.querySelectorAll('.circle-blue','circle-green','circle-orange');
+//const buttons = document.querySelectorAll('.circle-blue','circle-green','circle-orange');
+//var button = document.getElementById("bluebutton")
 
 // Add event listeners to the buttons
 buttons.addEventListener('click', handleClick); 
