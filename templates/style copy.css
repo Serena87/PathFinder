@@ -36,21 +36,6 @@ img {
     margin-top: 1rem;  /* Provides some space between the buttons and the text above */
 }
 
-bluebutton {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #0E0064;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  text-align: center; 
-}
-bluebutton.clicked {
-  background-color:darkslategray;
-  color: white;
-}
-
 .circle-blue {
     width: 80px;
     height: 80px;

@@ -1,25 +1,21 @@
+// Each button is generated in html as
+//        <button class = 'circle-blue'>{name}</button> 
+// where the placeholder represents the name/text in each button, i.e. the number 27 or the text "Social"
+
+// The first button generated within the button container on the webpage is .button-container :nth-child(1) , the second button-container :nth-child(2) ....
 
 // Get references to the buttons
-//const buttons = document.querySelectorAll('.circle-blue','circle-green','circle-orange');
-//var button = document.getElementById("bluebutton")
+var buttons = document.getElementsByTagName("button");
 
-// Add event listeners to the buttons
-buttons.addEventListener('click', handleClick); 
+// Iterates over the buttons and adds event listeners to the buttons
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", handleClick); 
+}
 
 // Handle button clicks
 function handleClick(event) {
     // mark the button as clicked
-    event.target.classList.add("focus");
-
-    // save the state of the button to localStorage
-    localStorage.setItem(event.target.id, "focus");
-    }
-
-// apply styles on page load based on saved button states
-for (const i = 1; i<=51; i++) {
-    const button = document.getElementById("button class='circle-orange'>" + i +"</button>");
-    if (localStorage.getItem("button class='circle-orange'>" + i + "</button>") === "focus") {
-        button.classList.add("focus");
-    }
+    event.target.classList.toggle("focus");
 }
+ 
 
