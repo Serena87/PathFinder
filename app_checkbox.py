@@ -47,7 +47,7 @@ def button_cluster():
         checked_buttons = [b for b in checked_buttons if b is not None]
 
         # Call function to get occupations based on checked buttons
-        if len(checked_buttons) == 3:
+        if len(checked_buttons) == 5:
             occupations = get_occupation2(*checked_buttons)
             html += "<br><br>"
             html += "<h2>Matching occupations:</h2>"
@@ -57,7 +57,7 @@ def button_cluster():
             html += "</ul>"
         elif len(checked_buttons) > 0:
             html += "<br><br>"
-            html += "<h2>Please select exactly 3 keywords.</h2>"
+            html += "<h2>Please select exactly 5 keywords.</h2>"
 
     html += "</body></html>"
 
