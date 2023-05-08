@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
-# Load dataset
+# Load dataset 
 df = pd.read_csv('dfsvenska.csv')
 
 # Define Swedish stop words
@@ -31,3 +31,4 @@ total_counts = desc_counts.add(field_counts, fill_value=0).add(occ_counts, fill_
 # Print most frequent occupations
 print(total_counts.sort_values(ascending=False))
 
+#den sorterar bra men om notera att det inte får finnas missing data för att den ska sortera korrekt
