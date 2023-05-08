@@ -5,7 +5,8 @@
 import pandas as pd
 from langdetect import detect
 # load nltk to detect stopwords
-import nltk.corpus
+from nltk.corpus import stopwords
+from nltk import word_tokenize
 
 
 replace_dict = {'OM TJÄNSTEN': ' ', 'ARBETSUPPGIFTER': ' ', 'VI SÖKER DIG SOM': ' ', 
@@ -48,7 +49,7 @@ df['description'] = df['description'].replace(replace_dict, regex=True)
 
 #Remove stop words from description column
 stop_words = set(stopwords.words('swedish'))
-df['description'] = df['description'].apply(lambda x: ' '.join([word for word in nltk.word_tokenize(x) if word.lower() not in stop_words]))
+df['description'] = df['description'].apply(lambda x: ' '.join([word for word in word_tokenize(x) if word.lower() not in stop_words]))
 
 
 # Clean Occupation column
