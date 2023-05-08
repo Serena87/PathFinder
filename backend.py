@@ -50,7 +50,7 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
-print(get_occupation2('organiserad', 'kreativ', 'social', 'utåtriktad', ''))
+print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
 
 
 
