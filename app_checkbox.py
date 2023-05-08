@@ -37,22 +37,35 @@ def button_cluster():
         html += f"<input type='checkbox' name='checkbox_{i}' value='{name}'>"
     html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
-    html += "</form></body></html>"
-
+    html += "<input type='reset' value='Reset'>"
+    html += "</form>"
+    
+    # Get the list of checked button values and display matching occupations
     if request.method == 'POST':
         # Create list of checked button values
         checked_buttons = [request.form.get(f'checkbox_{i}') for i in range(len(button_keywords))]
         checked_buttons = [b for b in checked_buttons if b is not None]
 
         # Call function to get occupations based on checked buttons
-        if len(checked_buttons) == 3:
+        if len(checked_buttons) == 5:
             occupations = get_occupation2(*checked_buttons)
-            print(f"Matching occupations: {occupations}")
-        else:
-            print("Please select exactly 3 keywords.")
+            html += "<br><br>"
+            html += "<h2>Matching occupations:</h2>"
+            html += "<ul>"
+            for occ in occupations:
+                html += f"<li>{occ}</li>"
+            html += "</ul>"
+        elif len(checked_buttons) > 0:
+            html += "<br><br>"
+            html += "<h2>Please select exactly 5 keywords.</h2>"
+
+    html += "</body></html>"
 
     # Render the HTML code as a response
     return html
 
 if __name__ == '__main__':
     app.run()
+
+
+
