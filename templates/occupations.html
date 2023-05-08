@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matching Occupations</title>
+  </head>
+  <body>
+    <h1>Matching Occupations</h1>
+    {% if occupations %}
+      <ul>
+        {% for occupation in occupations %}
+          <li>{{ occupation }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No matching occupations found.</p>
+    {% endif %}
+ 

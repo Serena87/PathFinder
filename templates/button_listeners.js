@@ -15,7 +15,7 @@ for (var i = 0; i < buttons.length; i++) {
 // Handle button clicks
 function handleClick(event) {
     // mark the button as clicked
-    event.target.classList.toggle("focus");
+    event.target.classList.toggle("clicked");
 }
  
 
