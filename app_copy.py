@@ -35,6 +35,7 @@ def index():
     with open('templates/index_Stine.html', 'r') as index:
         header_read = index.read() # Read the index html code from file:
     
+
     # Read the CSS code from the stylesheet:
     with open('templates/style copy.css', 'r') as stylesheet:
         css_read = stylesheet.read()
@@ -55,8 +56,10 @@ def index():
         else:
             button_html = orange_button_template.format(name=name)
         html += button_html
-   
-    html += "</div></body></html>"
+    html += "</div>"
+    # Marks the buttons when clicked using jQuery:
+    html += "<script> $(document).ready(function() { $('button').click(function() {$(this).toggleClass('clicked');});});</script>"
+    html += "</body></html>"
 
     # Render the HTML code as a response
     return html

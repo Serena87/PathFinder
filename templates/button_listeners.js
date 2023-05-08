@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $("button").click(function() {
+        $(this).toggleClass("button.clicked");
+    });
+});
 //document.addEventListener('DOMContentLoaded', handleClick() {
 
 // Each button is generated in html as
@@ -7,19 +12,22 @@
 // The first button generated within the button container on the webpage is .button-container :nth-child(1) , the second button-container :nth-child(2) ....
 
     // Get references to the buttons
-    var buttons = document.getElementsByTagName("button");
+    //var buttons = document.getElementsByTagName("button");
+    //const buttons = document.getElementsByTagName("button");
+    //const clicked_buttons = buttons.getElementsByClassName("clicked");
     //var buttons = document.querySelector(".bluebutton");
+    //const chosen_buttons = document.querySelectorAll(".clicked");
 
     // Iterates over the buttons and adds event listeners to the buttons
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", handleClick); 
-    }
+   // for (var i = 0; i < buttons.length; i++) {
+   //     buttons[i].addEventListener("click", handleClick); 
+   // }
 
     // Handle button clicks
-    function handleClick() {
+    //function handleClick() {
     // mark the button as clicked
-        buttons.classList.toggle("clicked");
-    }
+    //    buttons.classList.toggle("clicked");
+   // }
 
  
 
