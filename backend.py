@@ -50,7 +50,7 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
-print(get_occupation2('ledarskap', 'utveckling', 'utbildning', 'forskning', ''))
+print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
 
 
 
@@ -105,60 +105,9 @@ def fetch_common_words():
     print(common_words)
     return common_words
 
-fetch_common_words()
+#fetch_common_words()
 
 
 ## AI word extract COMMON WORDS 2
 
-import pandas as pd
-import nltk
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
-import random
-
-def extract_common_words(dataset_file, num_common_words=50):
-    # Load the dataset
-    try:
-        df = pd.read_csv(dataset_file)
-    except FileNotFoundError:
-        raise FileNotFoundError("Dataset file not found.")
-
-    # Tokenize the descriptions
-    tokenizer = nltk.RegexpTokenizer(r'\w+')
-    df['tokens'] = df['description'].apply(lambda x: tokenizer.tokenize(x.lower()))
-
-    # Remove stop words
-    stop_words = stopwords.words('swedish') + ['custom', 'stop', 'words']  # Add any additional stop words here
-    df['tokens'] = df['tokens'].apply(lambda x: [word for word in x if word not in stop_words])
-
-    # Join tokenized words into a single string
-    df['tokens'] = df['tokens'].apply(lambda x: ' '.join(x))
-
-    # Create a TF-IDF vectorizer
-    vectorizer = TfidfVectorizer()
-
-    # Fit the vectorizer on the tokenized descriptions
-    X = vectorizer.fit_transform(df['tokens'])
-
-    # Get the feature names (words) from the vectorizer
-    feature_names = vectorizer.get_feature_names_out()
-
-    # Convert feature_names to a list
-    feature_names = list(feature_names)
-
-    # Extract top N most common words based on TF-IDF scores
-    word_scores = zip(feature_names, X.sum(axis=0).tolist()[0])
-    sorted_words = sorted(word_scores, key=lambda x: x[1], reverse=True)
-    common_words = [word for word, _ in sorted_words[:num_common_words]]
-
-    return common_words
-
-
-print('---------')
-print('---------')
-print('---------')
-print('---------')
-
-# Example usage
-common_words = extract_common_words("clean_occup.csv", num_common_words=50)
-print(common_words)
+# fungerar verkligen inte bra än

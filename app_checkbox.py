@@ -49,12 +49,9 @@ def button_cluster():
         # Call function to get occupations based on checked buttons
         if len(checked_buttons) == 5:
             occupations = get_occupation2(*checked_buttons)
-            html += "<br><br>"
-            html += "<h2>Matching occupations:</h2>"
-            html += "<ul>"
-            for occ in occupations:
-                html += f"<li>{occ}</li>"
-            html += "</ul>"
+            # Generate HTML code for matching occupations page
+            match_html = render_template('occupations.html', occupations=occupations)
+            return match_html
         elif len(checked_buttons) > 0:
             html += "<br><br>"
             html += "<h2>Please select exactly 5 keywords.</h2>"
@@ -66,6 +63,8 @@ def button_cluster():
 
 if __name__ == '__main__':
     app.run()
+
+
 
 
 

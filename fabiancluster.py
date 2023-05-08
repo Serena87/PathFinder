@@ -39,4 +39,6 @@ df['cluster'] = labels
 # Print the occupations in each cluster
 for i in range(k):
     print(f'Cluster {i}:')
-    print(df[df['cluster'] == i]['occupation'].unique())
+    print(df[df['cluster'] == i]['occupation', 'description'].unique())
+
+#test4
