@@ -10,8 +10,8 @@ def index():
     # Refer to/read the JavaScript file used: TODO DOESN`T WORK..
     #js_file = 'templates/button_listeners.js'
 
-    #with open('templates/button_listeners.js', 'r') as js:
-       # js_read = js.read()
+    with open('templates/button_listeners.js', 'r') as js:
+       js_read = js.read()
 
     # Define the list of keywords to the buttons:
     #button_keywords = get_words()
@@ -60,7 +60,6 @@ def index():
 
     # Render the HTML code as a response
     return html
-    #return render_template('index_Stine.html')
 
 if __name__ == '__main__':
     app.run()

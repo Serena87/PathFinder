@@ -35,23 +35,8 @@ img {
     height: auto;
     margin-top: 1rem;  /* Provides some space between the buttons and the text above */
 }
-bluebutton {  /* Test */
-  width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: #0E0064;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    text-align: center;
-}
 
-bluebutton.clicked {  /* Test */
-    background-color:darkslategray;
-    color: white;
-}
-
-.circle-blue {
+.bluebutton {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -64,23 +49,23 @@ bluebutton.clicked {  /* Test */
   }
 
 /*Clicked button*/
-.circle-blue:focus {
+.bluebutton.clicked {
   background-color:darkslategray;
   color: white;
 }
 /* Color change when hovering over the button */
-.circle-blue:hover {
+.bluebutton:hover {
   background-color: gray;
   color: black;
 }
 /*Pressed effect */
-.circle-blue:active {
+.bluebutton:active {
   background-color: gray;
   box-shadow: 0 3px #666;
   transform: translateY(3px);
 }
 
-.circle-green {
+.greenbutton {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -91,22 +76,22 @@ bluebutton.clicked {  /* Test */
     
   }
 /*Clicked button*/
-.circle-green:focus {
+.greenbutton.clicked {
   background-color:darkslategray;
   color: white;
 }
 /* Color change when hovering over the button */
-.circle-green:hover {
+.greenbutton:hover {
     background-color: gray;
     color: black;
   }
 /*Pressed effect */
-.circle-green:active {
+.greenbutton:active {
   background-color: gray;
   box-shadow: 0 3px #666;
   transform: translateY(3px);
 }
-.circle-orange {
+.orangebutton {
     width: 80px;
     height: 80px;
     border-radius: 50%;       
@@ -117,17 +102,17 @@ bluebutton.clicked {  /* Test */
  
   }
 /*Clicked button*/
-.circle-orange:focus  {
+.orangebutton.clicked {
   background-color:darkslategray;
   color: white;
 }
 /* Color change when hovering over the button */
-.circle-orange:hover {
+.orangebutton:hover {
     background-color: gray;
     color: black;
   }
 /*Pressed effect */
-.circle-orange:active {
+.orangebutton:active {
   background-color: gray;
   box-shadow: 0 3px #666;
   transform: translateY(3px);
