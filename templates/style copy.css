@@ -33,7 +33,7 @@ img {
     align-items: center;
     /*height: 80vh; */
     height: auto;
-    margin-top: 1rem;  /* Provides some space between the buttons and the text above */
+    margin-top: 5rem;  /* Provides some space between the buttons and the text above */
 }
 
 .bluebutton {

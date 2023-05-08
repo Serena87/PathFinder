@@ -1,9 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 #from backend import get_words
 
 app = Flask(__name__)
 
-@app.route('/pathfinder')
+@app.route('/pathfinder', methods=['POST', 'GET'])
 
 
 def index():
@@ -35,7 +35,6 @@ def index():
     with open('templates/index_Stine.html', 'r') as index:
         header_read = index.read() # Read the index html code from file:
     
-
     # Read the CSS code from the stylesheet:
     with open('templates/style copy.css', 'r') as stylesheet:
         css_read = stylesheet.read()
@@ -44,6 +43,7 @@ def index():
     html = header_read
     html += css_read
     # Generates html code for the buttons:
+    #html += "<form method='POST'>"
     html += "<div class='button-container'>"
     # Generates the keyword buttons: 
     for i, name in enumerate(button_keywords):
@@ -56,11 +56,28 @@ def index():
         else:
             button_html = orange_button_template.format(name=name)
         html += button_html
+        
     html += "</div>"
-    # Marks the buttons when clicked using jQuery:
-    html += "<script> $(document).ready(function() { $('button').click(function() {$(this).toggleClass('clicked');});});</script>"
-    html += "</body></html>"
+      # Buttons for "Submit" and "Reset" the chosen bubbles
+    html += "<button id='submitBtn'>Submit</button>"
+    html += "<button id='resetBtn'>Reset</button>"
+    
+    # Marks the buttons/bubbles when clicked using jQuery:
+    # Click event handler for submit button, sending the clicked buttons' names to server
+    #html += "<script> $(document).ready(function() { $('button').click(function() {$(this).toggleClass('clicked'); var buttonName = $(this).text(); console.log(buttonName);});});</script>"
+    #html += "<script> $(document).ready(function() {$('button').click(function() {$(this).toggleClass('clicked');var buttonName = $(this).text();console.log(buttonName);});$('#submitBtn').click(function() {var clickedButtonNames = $.map($('button.clicked'), function(button) {return $(button).buttonName;});$.post('/pathfinder', {'buttonWords' :clickedButtonNames}, function(response){console.log(response);});});})</script>"
+    html += "<script>"
+    html += js_read
+    html += "</script>"
+    
+    #html += "</form>"
 
+    if request.method == 'POST':
+      # Create list of checked button values
+        clicked_buttons = request.form.getlist('buttonWords')
+        print(clicked_buttons)
+
+    html += "</body></html>"
     # Render the HTML code as a response
     return html
 
