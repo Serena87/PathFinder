@@ -19,9 +19,6 @@ lista2 = ['Organiserad', 'Självgående', 'Samarbetande', 'Analytisk', 'Resultat
 def get_words():
     return(lista2)
 
-
-
-
 ## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
 
 import pandas as pd
@@ -53,15 +50,9 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
-#print(get_occupation('ledarskap', 'utveckling', 'utbildning', 'forskning', '' ))
 print(get_occupation2('ledarskap', 'utveckling', 'utbildning', 'forskning', ''))
 
 
-
-import pandas as pd
-import nltk
-from nltk.corpus import stopwords
-import random
 
 
 
@@ -109,10 +100,10 @@ def extract_common_words(dataset_file):
     return common_words
 
 # Example usage
-common_words = extract_common_words('clean_occup.csv')
-print(common_words)
+def fetch_common_words(): 
+    common_words = extract_common_words('clean_occup.csv')
+    print(common_words)
+    return common_words
 
-
-
-
+fetch_common_words()
 
