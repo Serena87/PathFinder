@@ -50,7 +50,7 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
-print(get_occupation2('ledarskap', 'utveckling', 'utbildning', 'forskning', ''))
+print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
 
 
 
@@ -99,11 +99,15 @@ def extract_common_words(dataset_file):
 
     return common_words
 
-# Example usage
+# Usage
 def fetch_common_words(): 
     common_words = extract_common_words('clean_occup.csv')
     print(common_words)
     return common_words
 
-fetch_common_words()
+#fetch_common_words()
 
+
+## AI word extract COMMON WORDS 2
+
+# fungerar verkligen inte bra än
