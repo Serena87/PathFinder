@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/pathfinder', methods=['POST', 'GET'])
+@app.route('/pathfinder', methods=['POST'])
 
 
 def index():
@@ -43,7 +43,6 @@ def index():
     html = header_read
     html += css_read
     # Generates html code for the buttons:
-    #html += "<form method='POST'>"
     html += "<div class='button-container'>"
     # Generates the keyword buttons: 
     for i, name in enumerate(button_keywords):
@@ -58,10 +57,11 @@ def index():
         html += button_html
         
     html += "</div>"
+    html += "<form method='POST'>"
       # Buttons for "Submit" and "Reset" the chosen bubbles
     html += "<button id='submitBtn'>Submit</button>"
     html += "<button id='resetBtn'>Reset</button>"
-    
+    html += "</form>"
     # Marks the buttons/bubbles when clicked using jQuery:
     # Click event handler for submit button, sending the clicked buttons' names to server
     #html += "<script> $(document).ready(function() { $('button').click(function() {$(this).toggleClass('clicked'); var buttonName = $(this).text(); console.log(buttonName);});});</script>"
@@ -70,8 +70,6 @@ def index():
     html += js_read
     html += "</script>"
     
-    #html += "</form>"
-
     if request.method == 'POST':
       # Create list of checked button values
         clicked_buttons = request.form.getlist('buttonWords')
