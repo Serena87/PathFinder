@@ -67,7 +67,7 @@ def index():
     html += js_read
     html += "</script>"
     html += "</body></html>"
-
+    
     if request.method == 'POST':
       # Create list of checked button values
         clicked_buttons = request.form.getlist('buttonWords')
@@ -75,7 +75,8 @@ def index():
 
         checked_buttons = [request.form.get('buttonWords')]
         print(checked_buttons)
-    
+
+   
     # Render the HTML code as a response
     return html
 

@@ -10,22 +10,24 @@ $(document).ready(function() { // when the page is loaded
     });
     $('#submitBtn').click(function() { // when clicking the submit button
         var clickedButtonNames = [];   // creates an empty list 
-        var clickedButtons = $('clicked');
-        clickedButtons.each(function() {  // references to all clicked buttons, uses function on them
-            clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
+        $('button').each(function() {
+            if ($(this).hasClass('clicked')) {
+                console.log($(this).text()); // printing the names in the console if the button is marked
+                clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
+            }
         
         });
 
-    $.ajax({
-        url:'pathfinder',
-        method: 'POST',
-        data: { buttonWords : clickedButtonNames},
-        success: function(response) {
-            console.log('Success: ' + response);
-        },
-        error: function(xhr, status, error) {
-            console.log('Error: ' + error);
-        }
+        $.ajax({
+            url:'pathfinder',
+            method: 'POST',
+            data: { 'buttonWords' : clickedButtonNames},
+            success: function(response) {
+                console.log('Success!');
+            },
+            error: function(error) {
+                console.log(error);
+            }
         });
     });
 });
