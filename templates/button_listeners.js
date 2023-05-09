@@ -15,10 +15,11 @@ $(document).ready(function() { // when the page is loaded
                 console.log($(this).text()); // printing the names in the console if the button is marked
                 clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
             }
+            console.log(clickedButtonNames); // printing the populated array in console, works correctly!
         
         });
 
-        $.ajax({
+        $.ajax({ // skickar tom lista till python..
             url:'pathfinder',
             method: 'POST',
             data: { 'buttonWords' : clickedButtonNames},
