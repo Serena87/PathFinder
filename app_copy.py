@@ -3,8 +3,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/pathfinder', methods=['POST'])
-
+@app.route('/pathfinder', methods=['GET', 'POST'])
 
 def index():
     # Refer to/read the JavaScript file used: TODO DOESN`T WORK..
@@ -44,6 +43,7 @@ def index():
     html += css_read
     # Generates html code for the buttons:
     html += "<div class='button-container'>"
+   
     # Generates the keyword buttons: 
     for i, name in enumerate(button_keywords):
         template_index = i % len(button_templates)
@@ -55,27 +55,27 @@ def index():
         else:
             button_html = orange_button_template.format(name=name)
         html += button_html
-        
     html += "</div>"
-    html += "<form method='POST'>"
+   
       # Buttons for "Submit" and "Reset" the chosen bubbles
     html += "<button id='submitBtn'>Submit</button>"
     html += "<button id='resetBtn'>Reset</button>"
-    html += "</form>"
+   
     # Marks the buttons/bubbles when clicked using jQuery:
     # Click event handler for submit button, sending the clicked buttons' names to server
-    #html += "<script> $(document).ready(function() { $('button').click(function() {$(this).toggleClass('clicked'); var buttonName = $(this).text(); console.log(buttonName);});});</script>"
-    #html += "<script> $(document).ready(function() {$('button').click(function() {$(this).toggleClass('clicked');var buttonName = $(this).text();console.log(buttonName);});$('#submitBtn').click(function() {var clickedButtonNames = $.map($('button.clicked'), function(button) {return $(button).buttonName;});$.post('/pathfinder', {'buttonWords' :clickedButtonNames}, function(response){console.log(response);});});})</script>"
     html += "<script>"
     html += js_read
     html += "</script>"
-    
+    html += "</body></html>"
+
     if request.method == 'POST':
       # Create list of checked button values
         clicked_buttons = request.form.getlist('buttonWords')
-        print(clicked_buttons)
+        print(f'Buttons clicked with values: {clicked_buttons}')
 
-    html += "</body></html>"
+        checked_buttons = [request.form.get('buttonWords')]
+        print(checked_buttons)
+    
     # Render the HTML code as a response
     return html
 

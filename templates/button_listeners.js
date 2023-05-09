@@ -10,17 +10,18 @@ $(document).ready(function() { // when the page is loaded
     });
     $('#submitBtn').click(function() { // when clicking the submit button
         var clickedButtonNames = [];   // creates an empty list 
-        $('clicked').each(function() {  // references to all clicked buttons, uses function on them
+        var clickedButtons = $('clicked');
+        clickedButtons.each(function() {  // references to all clicked buttons, uses function on them
             clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
-            console.log(clickedButtonNames); // prints the list in the console
+        
         });
 
     $.ajax({
-        url:'/pathfinder',
+        url:'pathfinder',
         method: 'POST',
         data: { buttonWords : clickedButtonNames},
-        success: function(data) {
-            console.log('Success: ' + data);
+        success: function(response) {
+            console.log('Success: ' + response);
         },
         error: function(xhr, status, error) {
             console.log('Error: ' + error);
