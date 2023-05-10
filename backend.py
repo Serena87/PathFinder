@@ -17,9 +17,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 #Skickar ord att fylla bubblorna med till frontend
 lista = ['Noggran', 'Kreativ', 'Djur', 'Körkort', 'Positiv', 'Människor', 'Mat', 'Hållbarhet', 'Vårdande', 'Social', 'Försäljning']
 lista2 = ['Organiserad', 'Självgående', 'Samarbetande', 'Analytisk', 'Resultatinriktad', 'Uthållig', 'Kreativ', 'Kommunikativ', 'Flexibel', 'Kundorienterad', 'Teamplayer', 'Kundservice', 'Försäljning', 'Marknadsföring', 'Projektledning', 'Strategisk', 'Lösningsorienterad', 'Ansvarsfull', 'Driven', 'Tidsplanering', 'Affärsutveckling', 'Budgetansvarig', 'Ledarskap', 'Utveckling', 'Utbildning', 'Forskning', 'Hållbarhet', 'Produktutveckling', 'Kvalitetssäkring', 'Teknik', 'Administration', 'Ekonomi', 'Kvalitet', 'Resor', 'IT', 'Design', 'Hälso- och sjukvård', 'Juridik', 'Logistik', 'Inköp', 'Projektstyrning', 'Human resources', 'Rekrytering', 'Affärssystem', 'Affärsmannaskap', 'Operativt arbete', 'Skatt', 'Redovisning', 'Konflikthantering', 'Entreprenörskap']
+lista3 = ['Kompetent', 'Pålitlig', 'Ansvarsfull', 'Effektiv', 'Flexibel', 'Engagerad', 'Initiativrik', 'Kreativ', 'Organiserad', 'Kommunikativ', 'Samarbetande', 'Problemlösare', 'Självgående', 'Analytisk', 'Flexibel', 'Ambitiös', 'Resultatorienterad', 'Innovativ', 'Strukturerad', 'Tidsmedveten', 'Utåtriktad', 'Målinriktad', 'Lösningsfokuserad', 'Lyhörd', 'Anpassningsbar', 'Pålitlig', 'Uthållig', 'Uppfinningsrik', 'Kundorienterad', 'Teamorienterad', 'Empatisk', 'Beslutsam', 'Självsäker', 'Proaktiv', 'Kvalitetsmedveten', 'Diplomatisk', 'Initiativtagande', 'Driven', 'Flexibel', 'Analytisk', 'Resultatorienterad', 'Innovativ', 'Kreativ', 'Kommunikativ', 'Effektiv', 'Ansvarstagande', 'Pålitlig', 'Samarbetsvillig', 'Serviceinriktad', 'Lösningsorienterad']
 
 def get_words():
-    return(lista2)
+    return(lista3)
 
 ## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
 
