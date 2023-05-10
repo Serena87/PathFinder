@@ -13,12 +13,12 @@ def index():
        js_read = js.read()
 
     # Define the list of keywords to the buttons:
-    #button_keywords = get_words()
+    button_keywords = get_words()
  
     # For adjusting the buttons, easier with 50 numbers
-    button_keywords = []
-    for i in range(1, 51):
-        button_keywords.append(str(i))
+    #button_keywords = []
+    #for i in range(1, 51):
+        #button_keywords.append(str(i))
    
     button_templates = ["blue_button_template", "green_button_template", "orange_button_template"]
 
@@ -76,6 +76,7 @@ def index():
         clean_list = [item.split('&')[0] for item in button_values]
         clean_buttonlist = clean_list[1:-1] # removes first and last element of the list
         print(clean_buttonlist)
+
         
         # Call function to get occupations based on checked buttons
         if len(clean_buttonlist) == 5:
