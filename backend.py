@@ -12,24 +12,22 @@
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
 #Skickar ord att fylla bubblorna med till frontend
-lista = ['Noggran', 'Kreativ', 'Djur', 'Körkort', 'Positiv', 'Människor', 'Mat', 'Hållbarhet', 'Vårdande', 'Social', 'Försäljning']
 lista2 = ['Organiserad', 'Självgående', 'Samarbetande', 'Analytisk', 'Resultatinriktad', 'Uthållig', 'Kreativ', 'Kommunikativ', 'Flexibel', 'Kundorienterad', 'Teamplayer', 'Kundservice', 'Försäljning', 'Marknadsföring', 'Projektledning', 'Strategisk', 'Lösningsorienterad', 'Ansvarsfull', 'Driven', 'Tidsplanering', 'Affärsutveckling', 'Budgetansvarig', 'Ledarskap', 'Utveckling', 'Utbildning', 'Forskning', 'Hållbarhet', 'Produktutveckling', 'Kvalitetssäkring', 'Teknik', 'Administration', 'Ekonomi', 'Kvalitet', 'Resor', 'IT', 'Design', 'Hälso- och sjukvård', 'Juridik', 'Logistik', 'Inköp', 'Projektstyrning', 'Human resources', 'Rekrytering', 'Affärssystem', 'Affärsmannaskap', 'Operativt arbete', 'Skatt', 'Redovisning', 'Konflikthantering', 'Entreprenörskap']
+lista3 = ['Kompetent', 'Pålitlig', 'Ansvarsfull', 'Effektiv', 'Flexibel', 'Engagerad', 'Initiativrik', 'Kreativ', 'Organiserad', 'Kommunikativ', 'Samarbetande', 'Problemlösare', 'Självgående', 'Analytisk', 'Flexibel', 'Ambitiös', 'Resultatorienterad', 'Innovativ', 'Strukturerad', 'Tidsmedveten', 'Utåtriktad', 'Målinriktad', 'Lösningsfokuserad', 'Lyhörd', 'Anpassningsbar', 'Pålitlig', 'Uthållig', 'Uppfinningsrik', 'Kundorienterad', 'Teamorienterad', 'Empatisk', 'Beslutsam', 'Självsäker', 'Proaktiv', 'Kvalitetsmedveten', 'Diplomatisk', 'Initiativtagande', 'Driven', 'Flexibel', 'Analytisk', 'Resultatorienterad', 'Innovativ', 'Kreativ', 'Kommunikativ', 'Effektiv', 'Ansvarstagande', 'Pålitlig', 'Samarbetsvillig', 'Serviceinriktad', 'Lösningsorienterad']
 
 def get_words():
-    return(lista2)
+    return(lista3)
 
 ## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
 
-import pandas as pd
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 
 def get_occupation2(word1, word2, word3, word4, word5):
     # Load occupation data
     print('Reading dataset...')
-    df = pd.read_csv('clean_occup.csv')
+    df = pd.read_csv('dataset2022.csv')
     print('dataset read!')
 
     # Preprocess occupation descriptions. Puts words into vectors for each  
@@ -50,6 +48,7 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
+<<<<<<< HEAD
 print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
 
 
@@ -159,3 +158,4 @@ def classify_job(input_words):
 input_words = ['samarbetande', 'analytisk', 'kreativ', 'säkerhet', 'människor']
 matching_jobs = classify_job(input_words)
 print(matching_jobs)
+=======
