@@ -1,10 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 #from backend import get_words
 
 app = Flask(__name__)
 
-@app.route('/pathfinder')
-
+@app.route('/pathfinder', methods=['GET', 'POST'])
 
 def index():
     # Refer to/read the JavaScript file used: TODO DOESN`T WORK..
@@ -35,7 +34,6 @@ def index():
     with open('templates/index_Stine.html', 'r') as index:
         header_read = index.read() # Read the index html code from file:
     
-
     # Read the CSS code from the stylesheet:
     with open('templates/style copy.css', 'r') as stylesheet:
         css_read = stylesheet.read()
@@ -45,6 +43,7 @@ def index():
     html += css_read
     # Generates html code for the buttons:
     html += "<div class='button-container'>"
+   
     # Generates the keyword buttons: 
     for i, name in enumerate(button_keywords):
         template_index = i % len(button_templates)
@@ -57,10 +56,27 @@ def index():
             button_html = orange_button_template.format(name=name)
         html += button_html
     html += "</div>"
-    # Marks the buttons when clicked using jQuery:
-    html += "<script> $(document).ready(function() { $('button').click(function() {$(this).toggleClass('clicked');});});</script>"
+   
+      # Buttons for "Submit" and "Reset" the chosen bubbles
+    html += "<button id='submitBtn'>Submit</button>"
+    html += "<button id='resetBtn'>Reset</button>"
+   
+    # Marks the buttons/bubbles when clicked using jQuery:
+    # Click event handler for submit button, sending the clicked buttons' names to server
+    html += "<script>"
+    html += js_read
+    html += "</script>"
     html += "</body></html>"
+    
+    if request.method == 'POST':
+      # Create list of checked button values
+        clicked_buttons = request.form.getlist('buttonWords')
+        print(f'Buttons clicked with values: {clicked_buttons}')
 
+        checked_buttons = [request.form.get('buttonWords')]
+        print(checked_buttons)
+
+   
     # Render the HTML code as a response
     return html
 

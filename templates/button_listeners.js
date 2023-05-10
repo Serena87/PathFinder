@@ -1,8 +1,39 @@
-$(document).ready(function() {
-    $("button").click(function() {
-        $(this).toggleClass("button.clicked");
+$(document).ready(function() { // when the page is loaded
+    $('button').click(function() {  // when button is clicked
+        $(this).toggleClass('clicked'); // toggled to clicked-class with another marking color
+        var buttonName = $(this).text(); // extracts the name of the clicked button
+        console.log(buttonName);   // prints the name of the clicked button in the web console
+        });
+    $('#resetBtn').click(function() {  // when clicking the reset button
+       var allButtons = $('button');   // reference to all buttons
+       $(allButtons).toggleClass('clicked',false); // toggles all buttons to original state, unclicked
+    });
+    $('#submitBtn').click(function() { // when clicking the submit button
+        var clickedButtonNames = [];   // creates an empty list 
+        $('button').each(function() {
+            if ($(this).hasClass('clicked')) {
+                console.log($(this).text()); // printing the names in the console if the button is marked
+                clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
+            }
+            console.log(clickedButtonNames); // printing the populated array in console, works correctly!
+        
+        });
+
+        $.ajax({ // skickar tom lista till python..
+            url:'pathfinder',
+            method: 'POST',
+            data: { 'buttonWords' : clickedButtonNames},
+            success: function(response) {
+                console.log('Success!');
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
     });
 });
+    
+
 //document.addEventListener('DOMContentLoaded', handleClick() {
 
 // Each button is generated in html as
