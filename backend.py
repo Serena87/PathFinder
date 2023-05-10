@@ -49,8 +49,6 @@ def get_occupation2(word1, word2, word3, word4, word5):
     return df.iloc[top_occupations]['occupation'].tolist()
 
 <<<<<<< HEAD
-print(get_occupation2('skog', 'människor', 'social', 'utåtriktad', 'präst'))
-=======
 print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
 
 
@@ -160,4 +158,4 @@ def classify_job(input_words):
 input_words = ['samarbetande', 'analytisk', 'kreativ', 'säkerhet', 'människor']
 matching_jobs = classify_job(input_words)
 print(matching_jobs)
->>>>>>> ddb6e642504665ab4ee5fd22600aed2b4d352695
+=======

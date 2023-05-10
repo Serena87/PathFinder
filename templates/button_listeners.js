@@ -10,25 +10,20 @@ $(document).ready(function() { // when the page is loaded
     });
     $('#submitBtn').click(function() { // when clicking the submit button
         var clickedButtonNames = [];   // creates an empty list 
-        $('button').each(function() {
-            if ($(this).hasClass('clicked')) {
-                //console.log($(this).text()); // printing the names in the console if the button is marked
-                clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
-            }
-            //console.log(clickedButtonNames); // printing the populated array in console, works correctly!
-        
+        $('clicked').each(function() {  // references to all clicked buttons, uses function on them
+            clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
         });
-       
-        $.ajax({ // ska skicka listan clickedButtonNames till python..
-            url:'pathfinder',
-            type: 'POST',
-            data: { 'buttonWords' : clickedButtonNames},
-            success: function(response) {
-                console.log('Success!');
-            },
-            error: function(error) {
-                console.log(error);
-            }
+
+    $.ajax({
+        url:'/pathfinder',
+        method: 'POST',
+        data: { buttonWords : clickedButtonNames},
+        success: function(data) {
+            console.log('Success: ' + data);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error: ' + error);
+        }
         });
     });
 });
