@@ -1,6 +1,5 @@
 # HEJ Front-end!!
-# Ropa på get_words för en lista på 50 ord skapad av en människa
-# Ropa på extract_common_words för en lista av 50 ord skapat av en algoritm :D
+# Ropa på get_common_words för en lista på 50 ord skapad av en människa
 # Ropa på get_occupation2 och skicka in upp till 5 ord och få tillbaka en lista på 5 yrken
 # 3-5 ord fungerar bäst. Om ni skickar färre än 5, skicka med tomma strängar för resterande ord t.ex 
 # Get_occupation('hjälpsam', 'noggrann', 'ledning', '', '')
@@ -15,11 +14,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 #Skickar ord att fylla bubblorna med till frontend
-lista2 = ['Organiserad', 'Självgående', 'Samarbetande', 'Analytisk', 'Resultatinriktad', 'Uthållig', 'Kreativ', 'Kommunikativ', 'Flexibel', 'Kundorienterad', 'Teamplayer', 'Kundservice', 'Försäljning', 'Marknadsföring', 'Projektledning', 'Strategisk', 'Lösningsorienterad', 'Ansvarsfull', 'Driven', 'Tidsplanering', 'Affärsutveckling', 'Budgetansvarig', 'Ledarskap', 'Utveckling', 'Utbildning', 'Forskning', 'Hållbarhet', 'Produktutveckling', 'Kvalitetssäkring', 'Teknik', 'Administration', 'Ekonomi', 'Kvalitet', 'Resor', 'IT', 'Design', 'Hälso- och sjukvård', 'Juridik', 'Logistik', 'Inköp', 'Projektstyrning', 'Human resources', 'Rekrytering', 'Affärssystem', 'Affärsmannaskap', 'Operativt arbete', 'Skatt', 'Redovisning', 'Konflikthantering', 'Entreprenörskap']
-lista3 = ['Kompetent', 'Pålitlig', 'Ansvarsfull', 'Effektiv', 'Flexibel', 'Engagerad', 'Initiativrik', 'Kreativ', 'Organiserad', 'Kommunikativ', 'Samarbetande', 'Problemlösare', 'Självgående', 'Analytisk', 'Flexibel', 'Ambitiös', 'Resultatorienterad', 'Innovativ', 'Strukturerad', 'Tidsmedveten', 'Utåtriktad', 'Målinriktad', 'Lösningsfokuserad', 'Lyhörd', 'Anpassningsbar', 'Pålitlig', 'Uthållig', 'Uppfinningsrik', 'Kundorienterad', 'Teamorienterad', 'Empatisk', 'Beslutsam', 'Självsäker', 'Proaktiv', 'Kvalitetsmedveten', 'Diplomatisk', 'Initiativtagande', 'Driven', 'Flexibel', 'Analytisk', 'Resultatorienterad', 'Innovativ', 'Kreativ', 'Kommunikativ', 'Effektiv', 'Ansvarstagande', 'Pålitlig', 'Samarbetsvillig', 'Serviceinriktad', 'Lösningsorienterad']
 
-def get_words():
-    return(lista3)
 
 import random
 
@@ -35,7 +30,6 @@ def get_random_words():
 # Usage example:
 random_words_list = get_random_words()
 print(random_words_list)
-
 
 ## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
 
