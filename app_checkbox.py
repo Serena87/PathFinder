@@ -1,13 +1,20 @@
 from flask import Flask, render_template, request
 from backend import get_random_words, get_occupation2
+from swedish_chars_magic import replace_swedish_chars_list
+
 
 app = Flask(__name__)
 
 @app.route('/pathfinder', methods=['GET', 'POST'])
 def button_cluster():
     # Define the list of keywords to the buttons:
-    button_keywords = get_random_words()
-
+    button_keywords_raw = get_random_words()
+    # Replaces the swedish characters with HTML entities to display them properly on the website:
+    button_keywords = replace_swedish_chars_list(button_keywords_raw)
+    # gör tydligen ingen skillnad ändå...
+    # fast det funkar att koda texten så med headern "Välj 5 etc.." och i "Vänligen välj exakt 5 ord" längst ner på sidan går det bra med vanliga åäö.."
+    
+    # Read the JavaScript code:
     with open('templates/button_listeners.js', 'r') as js:
        js_read = js.read()
 
@@ -71,6 +78,7 @@ def button_cluster():
             template = green_button_template
         else:
             template = orange_button_template
+
         checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
         button_html = template.format(name=name)
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
@@ -87,6 +95,7 @@ def button_cluster():
         # Create list of checked button values
         checked_buttons = [request.form.get(f'checkbox_{i}') for i in range(len(button_keywords))]
         checked_buttons = [b for b in checked_buttons if b is not None]
+        #print(checked_buttons) # for checking
 
         # Call function to get occupations based on checked buttons
         if len(checked_buttons) == 5:
@@ -96,7 +105,7 @@ def button_cluster():
             return match_html
         elif len(checked_buttons) > 0:
             html += "<br><br>"
-            html += "<h2>Please select exactly 5 keywords.</h2>"
+            html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
 
     html += "</body></html>"
 
