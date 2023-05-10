@@ -1,11 +1,10 @@
 # HEJ Front-end!!
-# Ropa på get_common_words för en lista på 50 ord skapad av en människa
+# Ropa på get_random_words för en lista på 50 ord skapad av en människa
 # Ropa på get_occupation2 och skicka in upp till 5 ord och få tillbaka en lista på 5 yrken
 # 3-5 ord fungerar bäst. Om ni skickar färre än 5, skicka med tomma strängar för resterande ord t.ex 
 # Get_occupation('hjälpsam', 'noggrann', 'ledning', '', '')
 # Ni får snabbt tillbaka en lista på 5 occupations som passar
 # Varma hälsningar
-
 
 
 import pandas as pd
@@ -14,9 +13,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import random
 
-
-#Skickar ord att fylla bubblorna med till frontend
-
+# Skickar ord att fylla bubblorna med till frontend.
+# Hämtar från fil
 
 def get_random_words():
     with open('ord_till_frontend.txt', "r") as file:
@@ -27,12 +25,7 @@ def get_random_words():
     # Strip newline characters and return the random words as a list
     return [word.strip() for word in random_words]
 
-# Usage example:
-random_words_list = get_random_words()
-print(random_words_list)
-
 ## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
-
 
 def get_occupation2(word1, word2, word3, word4, word5):
     # Load occupation data
@@ -41,19 +34,22 @@ def get_occupation2(word1, word2, word3, word4, word5):
     print('dataset read!')
 
     # Preprocess occupation descriptions. Puts words into vectors for each  
+    print('Processing occupation descriptions...')
     tfidf = TfidfVectorizer()
     description_vectors = tfidf.fit_transform(df['description'].fillna(''))
-    print('preprocessed occupation descriptions! Vectors cretead')
 
     # Create input vector by transforming a string containing three words (word1, word2, and word3) 
     # using the same TfidfVectorizer instance. The resulting vector is stored in a variable called "input_vector".
+    print('Creating input vector...')
+
     input_vector = tfidf.transform([' '.join([word1, word2, word3, word4, word5])])
     print('Input vector created')
 
     # Compute cosine similarity (similarity between two vectors) between input vector and occupation description vectors
+    print('Matching...')
     similarity_scores = cosine_similarity(input_vector, description_vectors)
 
-    print('Similarity between input vector, description vector compared')
+
     # Rank occupations by similarity score and return top 5
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
