@@ -29,7 +29,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 def get_occupation2(word1, word2, word3, word4, word5):
     # Load occupation data
     print('Reading dataset...')
-    df = pd.read_csv('clean_occup.csv')
+    df = pd.read_csv('dataset2022.csv')
     print('dataset read!')
 
     # Preprocess occupation descriptions. Puts words into vectors for each  
@@ -50,7 +50,7 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
-print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
+print(get_occupation2('skog', 'människor', 'social', 'utåtriktad', 'präst'))
 
 
 
