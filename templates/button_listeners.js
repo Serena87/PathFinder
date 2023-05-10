@@ -12,16 +12,16 @@ $(document).ready(function() { // when the page is loaded
         var clickedButtonNames = [];   // creates an empty list 
         $('button').each(function() {
             if ($(this).hasClass('clicked')) {
-                console.log($(this).text()); // printing the names in the console if the button is marked
+                //console.log($(this).text()); // printing the names in the console if the button is marked
                 clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
             }
-            console.log(clickedButtonNames); // printing the populated array in console, works correctly!
+            //console.log(clickedButtonNames); // printing the populated array in console, works correctly!
         
         });
-
-        $.ajax({ // skickar tom lista till python..
+       
+        $.ajax({ // ska skicka listan clickedButtonNames till python..
             url:'pathfinder',
-            method: 'POST',
+            type: 'POST',
             data: { 'buttonWords' : clickedButtonNames},
             success: function(response) {
                 console.log('Success!');
