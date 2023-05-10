@@ -21,6 +21,22 @@ lista3 = ['Kompetent', 'Pålitlig', 'Ansvarsfull', 'Effektiv', 'Flexibel', 'Enga
 def get_words():
     return(lista3)
 
+import random
+
+def get_random_words():
+    with open('ord_till_frontend.txt', "r") as file:
+        lines = file.readlines()
+
+    random_words = random.sample(lines, 50)
+
+    # Strip newline characters and return the random words as a list
+    return [word.strip() for word in random_words]
+
+# Usage example:
+random_words_list = get_random_words()
+print(random_words_list)
+
+
 ## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
 
 
