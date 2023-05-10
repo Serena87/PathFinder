@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from backend import get_words, get_occupation2
+from backend import get_random_words, get_occupation2
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def index():
        js_read = js.read()
 
     # Define the list of keywords to the buttons:
-    button_keywords = get_words()
+    button_keywords = get_random_words()
  
     # For adjusting the buttons, easier with 50 numbers
     #button_keywords = []
