@@ -101,7 +101,7 @@ def extract_common_words(dataset_file):
 
 # Usage
 def fetch_common_words(): 
-    common_words = extract_common_words('clean_occup.csv')
+    common_words = extract_common_words('dataset2022.csv')
     print(common_words)
     return common_words
 
