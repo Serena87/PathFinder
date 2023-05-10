@@ -12,11 +12,11 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import random
+
 
 #Skickar ord att fylla bubblorna med till frontend
 
-
-import random
 
 def get_random_words():
     with open('ord_till_frontend.txt', "r") as file:
