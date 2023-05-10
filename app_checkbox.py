@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request
-from backend import get_words, get_occupation2
+from backend import get_random_words, get_occupation2
 
 app = Flask(__name__)
 
 @app.route('/pathfinder', methods=['GET', 'POST'])
 def button_cluster():
     # Define the list of keywords to the buttons:
-    button_keywords = get_words()
+    button_keywords = get_random_words()
 
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
