@@ -111,3 +111,51 @@ def fetch_common_words():
 ## AI word extract COMMON WORDS 2
 
 # fungerar verkligen inte bra än
+
+#HÄR KOMMER MIN KOD SE NEDAN
+
+# it will take the input words, predict the job occupations, 
+# filter the jobs dataset based on the predicted occupations, 
+# and return the top 5 matching job occupations.
+
+
+
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Load the job dataset
+jobs = pd.read_csv('dataset2022rows100.csv')
+
+# Create a CountVectorizer object
+vectorizer = CountVectorizer()
+
+# Convert the job descriptions into a matrix of numerical features
+X = vectorizer.fit_transform(jobs['description'])
+
+# Create a Multinomial Naive Bayes classifier object
+clf = MultinomialNB()
+
+# Train the classifier using the numerical features and the job occupations
+clf.fit(X, jobs['occupation'])
+
+def classify_job(input_words):
+    # Convert the input words into a numerical feature matrix
+    input_features = vectorizer.transform(input_words)
+
+    # Predict the job occupation based on the input features
+    predicted_occupations = clf.predict(input_features)
+
+    # Filter the jobs dataset based on the predicted occupations
+    matches = jobs[jobs['occupation'].isin(predicted_occupations)]
+
+    # Return the top 5 matching job occupations
+    top_matches = matches['occupation'].value_counts().head(5).index.tolist()
+
+    return top_matches
+
+input_words = ['samarbetande', 'analytisk', 'kreativ', 'säkerhet', 'människor']
+matching_jobs = classify_job(input_words)
+print(matching_jobs)
