@@ -8,6 +8,9 @@ def button_cluster():
     # Define the list of keywords to the buttons:
     button_keywords = get_random_words()
 
+    with open('templates/button_listeners.js', 'r') as js:
+       js_read = js.read()
+
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
         blue_button_template = fblue.read()
@@ -16,13 +19,49 @@ def button_cluster():
     with open('templates/orange_button_template.html', 'r') as forange:
         orange_button_template = forange.read()
 
+    
+    #Read the index html code for header from file:
+    with open('templates/index_Stine.html', 'r') as index:
+        header_read = index.read() # Read the index html code from file:
+    
     # Read the CSS code from the stylesheet:
     with open('templates/style copy.css', 'r') as stylesheet:
         css_read = stylesheet.read()
 
     # Generate the HTML code for the button cluster
-    html = "<!DOCTYPE html><html><head>"
+    html = html = header_read
     html += css_read
+    html += "<script>"
+    html += """
+        function handleClick(event) {
+            event.preventDefault();
+            var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
+            checkbox.checked = !checkbox.checked;
+            
+            // Change button color based on checkbox state
+            var button = event.currentTarget.querySelector("button");
+            if (checkbox.checked) {
+                button.classList.add("clicked");
+            } else {
+                button.classList.remove("clicked");
+            }
+        }
+
+        function handleReset(event) {
+            event.preventDefault();
+            var checkboxes = document.querySelectorAll("input[type=checkbox]");
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            
+            // Remove button color classes
+            var buttons = document.querySelectorAll("button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("clicked");
+            }
+        }
+    """
+    html += "</script>"
     html += "</head><body><form method='post'>"
     for i, name in enumerate(button_keywords):
         template_index = i % 3
@@ -32,13 +71,16 @@ def button_cluster():
             template = green_button_template
         else:
             template = orange_button_template
+        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
         button_html = template.format(name=name)
-        html += f"<label for='checkbox_{i}'>{button_html}</label>"
-        html += f"<input type='checkbox' name='checkbox_{i}' value='{name}'>"
+        html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
-    html += "<input type='reset' value='Reset'>"
+    html += "<input type='reset' value='Reset' onclick='handleReset(event)'>"
     html += "</form>"
+    html += "<script>"
+    html += js_read
+    html += "</script>"
     
     # Get the list of checked button values and display matching occupations
     if request.method == 'POST':
@@ -63,6 +105,10 @@ def button_cluster():
 
 if __name__ == '__main__':
     app.run()
+
+
+
+
 
 
 
