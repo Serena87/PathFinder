@@ -48,4 +48,116 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
+<<<<<<< HEAD
 print(get_occupation2('skog', 'människor', 'social', 'utåtriktad', 'präst'))
+=======
+print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
+
+
+
+
+
+## Ny extract_common_words
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords
+import random
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+def extract_common_words(dataset_file):
+    # Load the dataset
+    df = pd.read_csv(dataset_file)
+
+    # Tokenize the descriptions
+    tokenizer = nltk.RegexpTokenizer(r'\w+')
+    df['tokens'] = df['description'].apply(lambda x: tokenizer.tokenize(x.lower()))
+
+    # Remove stop words
+    stop_words = stopwords.words('swedish')
+    df['tokens'] = df['tokens'].apply(lambda x: [word for word in x if word not in stop_words])
+
+    # Join tokenized words into a single string
+    df['tokens'] = df['tokens'].apply(lambda x: ' '.join(x))
+
+    # Create a TF-IDF vectorizer
+    vectorizer = TfidfVectorizer()
+
+    # Fit the vectorizer on the tokenized descriptions
+    X = vectorizer.fit_transform(df['tokens'])
+
+    # Get the feature names (words) from the vectorizer
+    feature_names = vectorizer.get_feature_names_out()
+
+    # Convert feature_names to a list
+    feature_names = list(feature_names)
+
+    # Extract 50 random but common words
+    common_words = random.sample(feature_names, 50)
+
+    return common_words
+
+# Usage
+def fetch_common_words(): 
+    common_words = extract_common_words('clean_occup.csv')
+    print(common_words)
+    return common_words
+
+#fetch_common_words()
+
+
+## AI word extract COMMON WORDS 2
+
+# fungerar verkligen inte bra än
+
+#HÄR KOMMER MIN KOD SE NEDAN
+
+# it will take the input words, predict the job occupations, 
+# filter the jobs dataset based on the predicted occupations, 
+# and return the top 5 matching job occupations.
+
+
+
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Load the job dataset
+jobs = pd.read_csv('dataset2022rows100.csv')
+
+# Create a CountVectorizer object
+vectorizer = CountVectorizer()
+
+# Convert the job descriptions into a matrix of numerical features
+X = vectorizer.fit_transform(jobs['description'])
+
+# Create a Multinomial Naive Bayes classifier object
+clf = MultinomialNB()
+
+# Train the classifier using the numerical features and the job occupations
+clf.fit(X, jobs['occupation'])
+
+def classify_job(input_words):
+    # Convert the input words into a numerical feature matrix
+    input_features = vectorizer.transform(input_words)
+
+    # Predict the job occupation based on the input features
+    predicted_occupations = clf.predict(input_features)
+
+    # Filter the jobs dataset based on the predicted occupations
+    matches = jobs[jobs['occupation'].isin(predicted_occupations)]
+
+    # Return the top 5 matching job occupations
+    top_matches = matches['occupation'].value_counts().head(5).index.tolist()
+
+    return top_matches
+
+input_words = ['samarbetande', 'analytisk', 'kreativ', 'säkerhet', 'människor']
+matching_jobs = classify_job(input_words)
+print(matching_jobs)
+>>>>>>> ddb6e642504665ab4ee5fd22600aed2b4d352695
