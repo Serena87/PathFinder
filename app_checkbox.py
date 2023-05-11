@@ -1,13 +1,20 @@
 from flask import Flask, render_template, request
 from backend import get_random_words, get_occupation2
+from swedish_chars_magic import replace_swedish_chars_list
+
 
 app = Flask(__name__)
 
 @app.route('/pathfinder', methods=['GET', 'POST'])
 def button_cluster():
     # Define the list of keywords to the buttons:
-    button_keywords = get_random_words()
-
+    button_keywords_raw = get_random_words()
+    # Replaces the swedish characters with HTML entities to display them properly on the website:
+    button_keywords = replace_swedish_chars_list(button_keywords_raw)
+    # gör tydligen ingen skillnad ändå...
+    # fast det funkar att koda texten så med headern "Välj 5 etc.." och i "Vänligen välj exakt 5 ord" längst ner på sidan går det bra med vanliga åäö.."
+    
+    # Read the JavaScript code:
     with open('templates/button_listeners.js', 'r') as js:
        js_read = js.read()
 
@@ -33,16 +40,23 @@ def button_cluster():
     html += css_read
     html += "<script>"
     html += """
+       
         function handleClick(event) {
             event.preventDefault();
             var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
             checkbox.checked = !checkbox.checked;
-            
+
+            var count = parseInt(document.getElementById("counter").innerHTML);
+
             // Change button color based on checkbox state
             var button = event.currentTarget.querySelector("button");
             if (checkbox.checked) {
+                count += 1;
+                document.getElementById("counter").innerHTML = count;
                 button.classList.add("clicked");
             } else {
+                count -= 1;
+                document.getElementById("counter").innerHTML = count;
                 button.classList.remove("clicked");
             }
         }
@@ -59,10 +73,22 @@ def button_cluster():
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("clicked");
             }
+            document.getElementById("counter").innerHTML = 0;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var submitButton = document.querySelector("input[type='submit']");
+            submitButton.addEventListener('click', function() {
+                submitButton.classList.add('loading');   
+            });
+        });
+
     """
     html += "</script>"
+   
+    # End of head and start of html body
     html += "</head><body><form method='post'>"
+    html += "<div class='button-container'>"
     for i, name in enumerate(button_keywords):
         template_index = i % 3
         if template_index == 0:
@@ -71,17 +97,18 @@ def button_cluster():
             template = green_button_template
         else:
             template = orange_button_template
+
         checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
         button_html = template.format(name=name)
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
+    html += "</div>"
+    
+    # Reset and Submit buttons
     html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
     html += "<input type='reset' value='Reset' onclick='handleReset(event)'>"
     html += "</form>"
-    html += "<script>"
-    html += js_read
-    html += "</script>"
-    
+   
     # Get the list of checked button values and display matching occupations
     if request.method == 'POST':
         # Create list of checked button values
@@ -96,7 +123,11 @@ def button_cluster():
             return match_html
         elif len(checked_buttons) > 0:
             html += "<br><br>"
-            html += "<h2>Please select exactly 5 keywords.</h2>"
+            html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
+
+    # Text and counter for the number of chosen keywords
+    html += "<div style='width: 100%; display: flex; align-items: center;'><div style='min-width:10px; overflow: hidden;  margin-right: 10px;'><h3 style='margin: 0;'>Markerade nyckelord:</h3></div>"
+    html += "<div id='counter'>0</div></div>"
 
     html += "</body></html>"
 

@@ -6,9 +6,7 @@ app = Flask(__name__)
 @app.route('/pathfinder', methods=['GET', 'POST'])
 
 def index():
-    # Refer to/read the JavaScript file used: TODO DOESN`T WORK..
-    #js_file = 'templates/button_listeners.js'
-
+    # Refer to/read the JavaScript file used: 
     with open('templates/button_listeners.js', 'r') as js:
        js_read = js.read()
 
@@ -66,8 +64,7 @@ def index():
     html += "<script>"
     html += js_read
     html += "</script>"
-    html += "</body></html>"
-
+    
     if request.method == 'POST':
       # Create list of checked button values
         clicked_buttons = request.get_data('buttonWords')
@@ -75,7 +72,8 @@ def index():
         button_values = clicked_buttons_str.split('=')
         clean_list = [item.split('&')[0] for item in button_values]
         clean_buttonlist = clean_list[1:-1] # removes first and last element of the list
-        print(clean_buttonlist)
+        print(clean_buttonlist) # check in terminal
+        print(len(clean_buttonlist)) # check if the length is correct
 
         
         # Call function to get occupations based on checked buttons
@@ -84,9 +82,11 @@ def index():
             # Generate HTML code for matching occupations page
             match_html = render_template('occupations.html', occupations=occupations)
             return match_html
-        elif len(clean_buttonlist) > 0:
+        elif len(clean_buttonlist) > 0 and len(clean_buttonlist) < 5:
             html += "<br><br>"
             html += "<h2>Please select exactly 5 keywords.</h2>"
+    html += "</body></html>"
+    
     # Render the HTML code as a response
     return html
 
