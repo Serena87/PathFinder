@@ -85,12 +85,10 @@ def button_cluster():
 
     """
     html += "</script>"
-    #html += "<script>"
-    #html += js_read   # Denna kod gör inget ändå
-    #html += "</script>"
-
+   
     # End of head and start of html body
     html += "</head><body><form method='post'>"
+    html += "<div class='button-container'>"
     for i, name in enumerate(button_keywords):
         template_index = i % 3
         if template_index == 0:
@@ -103,6 +101,8 @@ def button_cluster():
         checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
         button_html = template.format(name=name)
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
+    html += "</div>"
+    
     # Reset and Submit buttons
     html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
@@ -124,9 +124,13 @@ def button_cluster():
         elif len(checked_buttons) > 0:
             html += "<br><br>"
             html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
-    html += "<h3>Markerade nyckelord:</h3>"
+
+    html += "<div style='width: 100%; display: flex; align-items: center;'><div style='min-width:10px; overflow: hidden;  margin-right: 10px;'><h3 style='margin: 0;'>Markerade nyckelord:</h3></div>"
+
+    #html += "<div style='border: 1px solid black; width: 100%;'><div style='min-width:10px; overflow: hidden; border: 1px solid red; min-height: 10px;'><h3>Markerade nyckelord:</h3></div>"
     # counter for the number of chosen keywords
-    html += "<div id='counter'>0</div>"
+    html += "<div id='counter'>0</div></div>"
+
     html += "</body></html>"
 
     # Render the HTML code as a response
