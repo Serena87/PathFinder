@@ -41,8 +41,9 @@ img {
 }
 
 .bluebutton {
-    width: 80px;
-    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    overflow: hidden;
     border-radius: 50%;
     background-color: #0E0064;
     color: white;
@@ -50,7 +51,7 @@ img {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     text-align: center;
-    
+    padding: 15px;
   }
 
 /*Clicked button*/
@@ -71,15 +72,17 @@ img {
 }
 
 .greenbutton {
-    width: 80px;
-    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    overflow: hidden;
     border-radius: 50%;
     background-color: #63BC44;
     color: black;
     cursor: pointer;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    
+    text-align: center;
+    padding: 15px;
   }
 /*Clicked button*/
 .greenbutton.clicked {
@@ -98,15 +101,18 @@ img {
   transform: translateY(3px);
 }
 .orangebutton {
-    width: 80px;
-    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    overflow: hidden;
     border-radius: 50%;       
     background-color: #FFB39B;
     color: black;
     cursor: pointer;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
- 
+    text-align: center;
+    padding: 15px;
+    
   }
 /*Clicked button*/
 .orangebutton.clicked {

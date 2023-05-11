@@ -73,6 +73,7 @@ def button_cluster():
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("clicked");
             }
+            document.getElementById("counter").innerHTML = 0;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
