@@ -125,10 +125,8 @@ def button_cluster():
             html += "<br><br>"
             html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
 
+    # Text and counter for the number of chosen keywords
     html += "<div style='width: 100%; display: flex; align-items: center;'><div style='min-width:10px; overflow: hidden;  margin-right: 10px;'><h3 style='margin: 0;'>Markerade nyckelord:</h3></div>"
-
-    #html += "<div style='border: 1px solid black; width: 100%;'><div style='min-width:10px; overflow: hidden; border: 1px solid red; min-height: 10px;'><h3>Markerade nyckelord:</h3></div>"
-    # counter for the number of chosen keywords
     html += "<div id='counter'>0</div></div>"
 
     html += "</body></html>"
