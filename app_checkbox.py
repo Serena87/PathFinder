@@ -40,17 +40,23 @@ def button_cluster():
     html += css_read
     html += "<script>"
     html += """
-
+       
         function handleClick(event) {
             event.preventDefault();
             var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
             checkbox.checked = !checkbox.checked;
-            
+
+            var count = parseInt(document.getElementById("counter").innerHTML);
+
             // Change button color based on checkbox state
             var button = event.currentTarget.querySelector("button");
             if (checkbox.checked) {
+                count += 1;
+                document.getElementById("counter").innerHTML = count;
                 button.classList.add("clicked");
             } else {
+                count -= 1;
+                document.getElementById("counter").innerHTML = count;
                 button.classList.remove("clicked");
             }
         }
@@ -68,7 +74,6 @@ def button_cluster():
                 buttons[i].classList.remove("clicked");
             }
         }
-       
 
         document.addEventListener('DOMContentLoaded', function() {
             var submitButton = document.querySelector("input[type='submit']");
@@ -121,27 +126,6 @@ def button_cluster():
     html += "<h3>Markerade nyckelord:</h3>"
     # counter for the number of chosen keywords
     html += "<div id='counter'>0</div>"
-    html += "<script>"
-    html += """
-        
-        const checkboxes = document.querySelectorAll("input[type='checkbox']");
-        checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener('click', updateCounter());
-        });
-
-        function updateCounter() {
-            // Get all the checkboxes
-            const checkboxes = document.querySelectorAll("input[type='checkbox']");
-            // Get the counter element
-            const counter = document.getElementById("counter");
-            // Count the number of selected checkboxes
-            const selectedCount = Array.from(checkboxes).filter((checkbox) => checkbox.checked).length;
-            // Update the text content of the counter element
-            counter.textContent = selectedCount.toString();
-        }
-
-    """
-    html += "</script>"
     html += "</body></html>"
 
     # Render the HTML code as a response
