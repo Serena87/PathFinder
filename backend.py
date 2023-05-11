@@ -61,6 +61,6 @@ def get_occupation2(word1, word2, word3, word4, word5):
     return df.iloc[top_occupations]['occupation'].tolist()
 
 
-print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
+#print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
 
 
