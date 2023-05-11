@@ -9,34 +9,32 @@ $(document).ready(function() { // when the page is loaded
        $(allButtons).toggleClass('clicked',false); // toggles all buttons to original state, unclicked
     });
     $('#submitBtn').click(function() { // when clicking the submit button
-        //var clickedButtonNames = [];   // creates an empty list 
-        //var clicked = $('.clicked');
-        //clicked.each(function() {  // references to all clicked buttons, uses function on them
-            //clickedButtonNames.push($(this).text()); // adds the names of each clicked button to the list 
-            //console.log(clickedButtonNames)
-        //});
         var selectedBoxes = $("input[type='checkbox']:checked"); // get all checked/clicked buttons/checkboxes
         var checkedValues = []; // creates an empty array to store the values
         selectedBoxes.each(function() { // loop through checked boxes
             checkedValues.push($(this).val());
         });
-
         console.log(checkedValues); // for checking
-
+        // show loading animation
+        $('#submitBtn').addClass('loading');
+    
     $.ajax({
         url:'/pathfinder',
         type: 'POST',
-        //data: { buttonWords : clickedButtonNames},
         data: { checkedWords : checkedValues},
         success: function(response) {
             console.log(response); // handle response from server
         },
         error: function(error) {
             console.log('Error: ' + error);
+        },
+        complete: function() {
+            // remove loading animation
+            $('#submitBtn').removeClass('loading');
         }
-        });
+      });
     });
-});
+
     
 
 //document.addEventListener('DOMContentLoaded', handleClick() {

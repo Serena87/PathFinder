@@ -278,4 +278,45 @@ of buttons increases. Maximum of 50 buttons. */
 .button-container :nth-child(50) {
   grid-area: 9 / 4 
 }
+/* Style for the Submit and Reset buttons */
+input[type="submit"], input[type="reset"] {
+  display: block;
+  float: left;
+  margin-right: 10px;
+  
+  padding: 10px 20px;
+  border: none;
+  background-color: #0E0064;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+input[type='submit'].loading {
+  
+  position: relative;
+  z-index: 1;
+}
+input[type='submit'].loading:after {
+  
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+
+  animation: spin 1s infinite linear;
+  
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 </style>

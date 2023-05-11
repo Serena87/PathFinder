@@ -40,6 +40,7 @@ def button_cluster():
     html += css_read
     html += "<script>"
     html += """
+
         function handleClick(event) {
             event.preventDefault();
             var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
@@ -67,8 +68,22 @@ def button_cluster():
                 buttons[i].classList.remove("clicked");
             }
         }
+       
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var submitButton = document.querySelector("input[type='submit']");
+            submitButton.addEventListener('click', function() {
+                submitButton.classList.add('loading');   
+            });
+        });
+
     """
     html += "</script>"
+    #html += "<script>"
+    #html += js_read   # Denna kod gör inget ändå
+    #html += "</script>"
+
+    # End of head and start of html body
     html += "</head><body><form method='post'>"
     for i, name in enumerate(button_keywords):
         template_index = i % 3
@@ -79,23 +94,21 @@ def button_cluster():
         else:
             template = orange_button_template
 
-        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
+        #checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
+        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;' onclick='updateCounter()'>"
+
         button_html = template.format(name=name)
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
     html += "<input type='reset' value='Reset' onclick='handleReset(event)'>"
     html += "</form>"
-    html += "<script>"
-    html += js_read
-    html += "</script>"
-    
+   
     # Get the list of checked button values and display matching occupations
     if request.method == 'POST':
         # Create list of checked button values
         checked_buttons = [request.form.get(f'checkbox_{i}') for i in range(len(button_keywords))]
         checked_buttons = [b for b in checked_buttons if b is not None]
-        #print(checked_buttons) # for checking
 
         # Call function to get occupations based on checked buttons
         if len(checked_buttons) == 5:
@@ -106,7 +119,23 @@ def button_cluster():
         elif len(checked_buttons) > 0:
             html += "<br><br>"
             html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
-
+    html += "<h3>Markerade nyckelord:</h3>"
+    # counter for the number of chosen keywords
+    html += "<span id='counter'>0</span>"
+    html += "<script>"
+    html += """
+        function updateCounter() {
+        // get all the checked checkboxes
+        const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+        // update the counter
+        const counter = document.getElementById('counter');
+        counter.textContent = checkboxes.length.toString();
+        }
+    const checkboxes = document.querySelectorAll("input[type='checkbox']");
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].setAttribute("onclick", "updateCounter()");
+    } """
+    html += "</script>"
     html += "</body></html>"
 
     # Render the HTML code as a response
