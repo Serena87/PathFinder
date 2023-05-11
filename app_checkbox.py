@@ -94,11 +94,10 @@ def button_cluster():
         else:
             template = orange_button_template
 
-        #checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
-        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;' onclick='updateCounter()'>"
-
+        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
         button_html = template.format(name=name)
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
+    # Reset and Submit buttons
     html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
     html += "<input type='reset' value='Reset' onclick='handleReset(event)'>"
@@ -121,20 +120,27 @@ def button_cluster():
             html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
     html += "<h3>Markerade nyckelord:</h3>"
     # counter for the number of chosen keywords
-    html += "<span id='counter'>0</span>"
+    html += "<div id='counter'>0</div>"
     html += "<script>"
     html += """
+        
+        const checkboxes = document.querySelectorAll("input[type='checkbox']");
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('click', updateCounter());
+        });
+
         function updateCounter() {
-        // get all the checked checkboxes
-        const checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-        // update the counter
-        const counter = document.getElementById('counter');
-        counter.textContent = checkboxes.length.toString();
+            // Get all the checkboxes
+            const checkboxes = document.querySelectorAll("input[type='checkbox']");
+            // Get the counter element
+            const counter = document.getElementById("counter");
+            // Count the number of selected checkboxes
+            const selectedCount = Array.from(checkboxes).filter((checkbox) => checkbox.checked).length;
+            // Update the text content of the counter element
+            counter.textContent = selectedCount.toString();
         }
-    const checkboxes = document.querySelectorAll("input[type='checkbox']");
-    for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].setAttribute("onclick", "updateCounter()");
-    } """
+
+    """
     html += "</script>"
     html += "</body></html>"
 
