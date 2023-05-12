@@ -1,5 +1,7 @@
 # HEJ Front-end!!
 # Ropa på get_random_words för en lista på 50 ord skapad av en människa
+# Ropa på get_egenskaper() för en lista på 50 egenskaper
+# Ropa på get_arbetsuppgifter() för en lista på 50 arbetsuppgifter
 # Ropa på get_occupation2 och skicka in upp till 5 ord och få tillbaka en lista på 5 yrken
 # 3-5 ord fungerar bäst. Om ni skickar färre än 5, skicka med tomma strängar för resterande ord t.ex 
 # Get_occupation('hjälpsam', 'noggrann', 'ledning', '', '')
