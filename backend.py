@@ -30,7 +30,34 @@ def get_random_words():
     words = new_get_random_words()
     return words
 
-## Takes x amount of words, returns 5 suitable occupations. Used by frontend. 
+
+## Gets 15 egenskaper
+
+def get_egenskaper():
+    with open(('ord_egenskaper.txt'), 'r') as file:
+        words = file.read().splitlines()
+    
+    if 15 >= len(words):
+        return words
+    
+    random_words = random.sample(words, 15)
+
+    return random_words
+
+# Gets 15 arbetsuppgifter
+
+def get_arbetsuppgifter():
+    with open(('ord_arbetsuppgifter.txt'), 'r') as file:
+        words = file.read().splitlines()
+    
+    if 15 >= len(words):
+        return words
+    
+    random_words = random.sample(words, 15)
+
+    return random_words
+
+## Takes x amount of words, returns 5 suitable occupations using cosine similarity. Used by frontend. 
 
 def get_occupation2(word1, word2, word3, word4, word5):
     # Load occupation data
