@@ -15,7 +15,6 @@ import random
 
 # Skickar ord att fylla bubblorna med till frontend.
 # Hämtar från fil
-import random
 
 def new_get_random_words():
     with open(('ord_till_frontend.txt'), 'r') as file:
