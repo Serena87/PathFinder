@@ -1,7 +1,7 @@
 <style>
 
 body {
-  font-family: Arial, sans-serif, Helvetica, Verdana, Times New Roman, Georgia, Palatino, Open Sans, Roboto, Lato, Source Sans Pro ;
+  font-family: Arial, sans-serif, Helvetica, Verdana ;
 }
 .center-container {
     position: relative;
@@ -26,6 +26,7 @@ img {
 }
 
 .button-container {
+    max-width:100%;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
@@ -135,7 +136,8 @@ img {
 Starts with placing buttons in the centre and "grows" around the centre as the number
 of buttons increases. Maximum of 50 buttons. */
 .button-container :nth-child(1) {
-  grid-area: 5 / 5
+  grid-area: 5 / 5;
+  
 }
 .button-container :nth-child(2) {
   grid-area: 4 / 5
