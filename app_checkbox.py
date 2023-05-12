@@ -1,11 +1,17 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+import time
 from backend import get_random_words, get_occupation2
 from swedish_chars_magic import replace_swedish_chars_list
 
 
 app = Flask(__name__)
 
-@app.route('/pathfinder', methods=['GET', 'POST'])
+@app.route('/pathfinder')
+def intro_page():
+    return render_template('intro.html')
+
+
+@app.route('/pathfinder_main', methods=['GET', 'POST'])
 def button_cluster():
     # Define the list of keywords to the buttons:
     button_keywords_raw = get_random_words()
@@ -131,8 +137,11 @@ def button_cluster():
 
     html += "</body></html>"
 
+        
     # Render the HTML code as a response
     return html
+
+
 
 if __name__ == '__main__':
     app.run()

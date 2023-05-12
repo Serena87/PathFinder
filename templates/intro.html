@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intro Loading Page</title>
+    <style>
+        body {
+            background-color: #00002c; /* Dark blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .logo {
+            color: #d4d410; /* Yellow color */
+            font-size: 75px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .arrow {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background-color: #d4d410;
+            animation: arrowAnimation 1s infinite;
+        }
+
+        @keyframes arrowAnimation {
+            0% {
+                width: 20px;
+            }
+            50% {
+                width: 175px;
+            }
+            100% {
+                width: 20px;
+            }
+        }
+    </style>
+    <script>
+        setTimeout(function() {
+            window.location.href = '/pathfinder_main';
+        }, 5000); // Redirect after 5 seconds
+    </script>
+</head>
+<body>
+    <div class="logo">Pathfinder<span class="arrow"></span></div>
+</body>
+</html>
+
+
+
+
