@@ -2,6 +2,7 @@
 
 body {
   font-family: Arial, sans-serif, Helvetica, Verdana ;
+  background-color: #00002c; /* Dark blue background */
 }
 .center-container {
     position: relative;
