@@ -16,7 +16,7 @@ import random
 # Skickar ord att fylla bubblorna med till frontend.
 # Hämtar från fil
 
-def new_get_random_words():
+def get_random_words():
     with open(('ord_till_frontend.txt'), 'r') as file:
         words = file.read().splitlines()
     
@@ -25,11 +25,6 @@ def new_get_random_words():
     
     random_words = random.sample(words, 50)
     return random_words
-
-def get_random_words():
-    words = new_get_random_words()
-    return words
-
 
 ## Gets 15 egenskaper
 
