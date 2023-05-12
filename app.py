@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import time
-from backend import get_random_words, get_occupation2
-#from swedish_chars_magic import replace_swedish_chars_list
-
+from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper
+from list_work import list_mixer
+import random
 
 app = Flask(__name__)
 
@@ -14,12 +14,17 @@ def intro_page():
 @app.route('/pathfinder_main', methods=['GET', 'POST'])
 def button_cluster():
     # Define the list of keywords to the buttons:
-    button_keywords = get_random_words()
-    # Replaces the swedish characters with HTML entities to display them properly on the website:
-    #button_keywords = replace_swedish_chars_list(button_keywords_raw)
-    # gör tydligen ingen skillnad ändå...
-    # fast det funkar att koda texten så med headern "Välj 5 etc.." och i "Vänligen välj exakt 5 ord" längst ner på sidan går det bra med vanliga åäö.."
     
+    button_keywords_attributes = get_egenskaper() # from backend, list with 15 personal attributes
+    button_keywords_tasks = get_arbetsuppgifter() # from backend, list with 15 work tasks
+    button_keywords_mixed = list_mixer(button_keywords_attributes, button_keywords_tasks) # adding the two lists together to new list with 30 words
+    random.shuffle(button_keywords_mixed) # Shuffles the words in the list so that they are mixed before creating the buttons/bubbles with the list
+    
+    # For adjusting the buttons, easier with 30 numbers
+    #button_keywords = []
+    #for i in range(1, 31):
+        #button_keywords.append(str(i))
+
     # Read the JavaScript code:
     with open('templates/button_listeners.js', 'r') as js:
        js_read = js.read()
@@ -27,8 +32,6 @@ def button_cluster():
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
         blue_button_template = fblue.read()
-    with open('templates/green_button_template.html', 'r') as fgreen:
-        green_button_template = fgreen.read()
     with open('templates/orange_button_template.html', 'r') as forange:
         orange_button_template = forange.read()
 
@@ -80,14 +83,8 @@ def button_cluster():
                 buttons[i].classList.remove("clicked");
             }
             document.getElementById("counter").innerHTML = 0;
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var submitButton = document.querySelector("input[type='submit']");
-            submitButton.addEventListener('click', function() {
-                submitButton.classList.add('loading');   
-            });
-        });
+        
+        };
 
     """
     html += "</script>"
@@ -95,12 +92,10 @@ def button_cluster():
     # End of head and start of html body
     html += "</head><body><form method='post'>"
     html += "<div class='button-container'>"
-    for i, name in enumerate(button_keywords):
-        template_index = i % 3
+    for i, name in enumerate(button_keywords_mixed):
+        template_index = i % 2
         if template_index == 0:
             template = blue_button_template
-        elif template_index == 1:
-            template = green_button_template
         else:
             template = orange_button_template
 
@@ -118,7 +113,7 @@ def button_cluster():
     # Get the list of checked button values and display matching occupations
     if request.method == 'POST':
         # Create list of checked button values
-        checked_buttons = [request.form.get(f'checkbox_{i}') for i in range(len(button_keywords))]
+        checked_buttons = [request.form.get(f'checkbox_{i}') for i in range(len(button_keywords_mixed))]
         checked_buttons = [b for b in checked_buttons if b is not None]
 
         # Call function to get occupations based on checked buttons
