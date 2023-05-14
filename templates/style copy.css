@@ -6,7 +6,7 @@ body {
 }
 .center-container {
     position: relative;
-    height: 80vh;
+    height: 200px;
 }
 /* Content inside the container */
 .center-content {        
@@ -23,20 +23,21 @@ body {
 /* The PathFinder logo */
 img { 
    max-width: 100%; /* ensures that the logo doesn`t exceed the width of the container */
-   height: auto;
+   height: 200px;
+   margin-left: 50px;
    margin-bottom: 1rem; /* Provides some space between the logo and the text below */
 }
 /* The header text, description */
 h1 {
   font: 'Inria Sans';
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   margin-left: 50px;
 }
 /* Text: Vänligen välj exakt 5 nyckelord! */
 h2 {
   font: 'Inria Sans';
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   margin-left: 50px;
 }
@@ -50,14 +51,14 @@ h3 {
 /* Text: Utifrån...etc */
 h4 {
   font: 'Inria Sans';
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   margin-left: 50px;
 }
 /* Text: Dina valda nyckelord: */
 h5 {
   font: 'Inria Sans';
-  font-size: 16px;
+  font-size: 14px;
   color: white;
   margin-left: 50px;
 }
@@ -73,7 +74,7 @@ h5 {
     justify-content: center;
     align-items: center;
     height: auto;
-    margin-top: 8rem;  /* Provides some space between the buttons and the text above */
+    margin-top: 1rem;  /* Provides some space between the buttons and the text above */
 }
 /* Attributes that are common for both button types: */
 .greenbutton, .bluebutton {
@@ -104,7 +105,6 @@ h5 {
   color: white;
 
 }
-
 /* Color change when hovering over the button */
 .greenbutton:hover, .bluebutton:hover {
     background-color: gray;
@@ -113,6 +113,12 @@ h5 {
 /* Pressed effect */
 .greenbutton:active, .bluebutton:active {
   transform: translateY(3px);
+}
+/* Shrinks the selected buttons when moved to selectedContainer list */
+#selected_keywords button {
+  width: 100px;
+  height: 100px;
+  font-size: 10px;
 }
 /* Puts the buttons in their positions within the 9x9 grid, creating a round form.
 Starts with placing buttons in the centre and "grows" around the centre as the number
@@ -280,7 +286,7 @@ input[type="submit"], input[type="reset"] {
   background-color: #00002c;
   color: #9FD33C;
   border-radius: 5px;
-  font-size: 1.2em;
+  font-size: 14px;
   cursor: pointer; /* Add pointer cursor on hover */
 }
 input[type='submit'] {
