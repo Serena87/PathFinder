@@ -65,7 +65,11 @@ def button_cluster():
         }
         function moveSelectedButton(button) {
             var selectedContainer = document.getElementById("selected_keywords");
-            selectedContainer.appendChild(button.parentNode.cloneNode(true));
+            var clonedButton = button.parentNode.cloneNode(true);
+            var originalButton = clonedButton.querySelector("button");
+            originalButton.classList.remove("clicked");
+            selectedContainer.appendChild(clonedButton);
+        
         }
         function removeSelectedButton(button) {
             var selectedContainer = document.getElementById("selected_keywords");
