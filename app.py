@@ -26,16 +26,15 @@ def button_cluster():
         #button_keywords.append(str(i))
 
     # Read the JavaScript code:
-    with open('templates/button_listeners.js', 'r') as js:
-       js_read = js.read()
+    #with open('templates/button_listeners.js', 'r') as js:
+     #  js_read = js.read()
 
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
         blue_button_template = fblue.read()
-    with open('templates/orange_button_template.html', 'r') as forange:
-        orange_button_template = forange.read()
+    with open('templates/green_button_template.html', 'r') as fgreen:
+        green_button_template = fgreen.read()
 
-    
     #Read the index html code for header from file:
     with open('templates/index_Stine.html', 'r') as index:
         header_read = index.read() # Read the index html code from file:
@@ -97,15 +96,15 @@ def button_cluster():
         if template_index == 0:
             template = blue_button_template
         else:
-            template = orange_button_template
+            template = green_button_template
 
         checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
         button_html = template.format(name=name)
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "</div>"
+    html += "<br><br>"
     
     # Reset and Submit buttons
-    html += "<br><br>"
     html += "<input type='submit' value='Submit'>"
     html += "<input type='reset' value='Reset' onclick='handleReset(event)'>"
     html += "</form>"
@@ -126,13 +125,9 @@ def button_cluster():
             html += "<br><br>"
             html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
 
-    # Text and counter for the number of chosen keywords
-    html += "<div style='width: 100%; display: flex; align-items: center;'><div style='min-width:10px; overflow: hidden;  margin-right: 10px;'><h3 style='margin: 0;'>Markerade nyckelord:</h3></div>"
-    html += "<div id='counter'>0</div></div>"
 
     html += "</body></html>"
 
-        
     # Render the HTML code as a response
     return html
 

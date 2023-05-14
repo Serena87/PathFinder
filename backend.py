@@ -31,7 +31,7 @@ def get_random_words():
 ## Gets 15 egenskaper
 
 def get_egenskaper():
-    with open(('ord_egenskaper.txt'), 'r') as file:
+    with open(('ord_egenskaper.txt'), 'r', encoding='utf-8') as file:
         words = file.read().splitlines()
     
     if 15 >= len(words):
@@ -44,7 +44,7 @@ def get_egenskaper():
 # Gets 15 arbetsuppgifter
 
 def get_arbetsuppgifter():
-    with open(('ord_arbetsuppgifter.txt'), 'r') as file:
+    with open(('ord_arbetsuppgifter.txt'), 'r', encoding='utf-8') as file:
         words = file.read().splitlines()
     
     if 15 >= len(words):

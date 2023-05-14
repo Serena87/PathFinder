@@ -26,6 +26,41 @@ img {
    height: auto;
    margin-bottom: 1rem; /* Provides some space between the logo and the text below */
 }
+/* The header text, description */
+h1 {
+  font: 'Inria Sans';
+  font-size: 16px;
+  color: white;
+  margin-left: 50px;
+}
+/* Text: Vänligen välj exakt 5 nyckelord! */
+h2 {
+  font: 'Inria Sans';
+  font-size: 16px;
+  color: white;
+  margin-left: 50px;
+}
+/* Text: Markerade nyckelord: */
+h3 {
+  font: 'Inria Sans';
+  font-size: 14px;
+  color: white;
+  margin-left: 50px;
+}
+/* Text: Utifrån...etc */
+h4 {
+  font: 'Inria Sans';
+  font-size: 16px;
+  color: white;
+  margin-left: 50px;
+}
+/* Text: Dina valda nyckelord: */
+h5 {
+  font: 'Inria Sans';
+  font-size: 16px;
+  color: white;
+  margin-left: 50px;
+}
 /* The container for all the buttons, grid type */
 .button-container {
     max-width:100%;
@@ -38,45 +73,46 @@ img {
     justify-content: center;
     align-items: center;
     height: auto;
-    margin-top: 5rem;  /* Provides some space between the buttons and the text above */
+    margin-top: 15rem;  /* Provides some space between the buttons and the text above */
 }
 /* Attributes that are common for both button types: */
-.bluebutton, .orangebutton {
-    width: 120px;
-    height: 120px;
+.greenbutton, .bluebutton {
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
   }
 
-/* Specific attributes for blue buttons only: */
-.bluebutton {
-    background-color: #0E0064;
-    color: white;
+/* Specific attributes for green buttons only: */
+.greenbutton {
+    background-color: #9FD33C;
+    color: #00002c;
 }
-/* Specific attributes only for orange buttons: */
-.orangebutton {     
-    background-color: #FFB39B;
-    color: black;
-    
+/* Specific attributes only for blue buttons: */
+.bluebutton {     
+    background-color: #00002c;
+    color: #9FD33C;
+    border-color: #9FD33C;
+    border-width: 5px;
   }
 /* **** Button effects **** */
 
 /* Clicked buttons */
-.orangebutton.clicked, .bluebutton.clicked {
+.greenbutton.clicked, .bluebutton.clicked {
   background-color:darkslategray;
   color: white;
 }
 /* Color change when hovering over the button */
-.orangebutton:hover, .bluebutton:hover {
+.greenbutton:hover, .bluebutton:hover {
     background-color: gray;
     color: black;
   }
 /* Pressed effect */
-.orangebutton:active, .bluebutton:active {
-  background-color: gray;
-  box-shadow: 0 3px #666;
+.greenbutton:active, .bluebutton:active {
+  /*background-color: gray; */
+  /*box-shadow: 0 3px #666;*/
   transform: translateY(3px);
 }
 
@@ -241,38 +277,16 @@ input[type="submit"], input[type="reset"] {
   margin-right: 10px;
   
   padding: 10px 20px;
-  border: none;
-  background-color: #0E0064;
-  color: #fff;
+  border-color: #9FD33C;
+  border-width: 2px;
+  background-color: #00002c;
+  color: #9FD33C;
   border-radius: 5px;
   font-size: 1.2em;
   cursor: pointer; /* Add pointer cursor on hover */
 }
-
-input[type='submit'].loading {
-  
-  position: relative;
-  z-index: 1;
-}
-input[type='submit'].loading:after {
-  
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  margin-top: -10px;
-  margin-left: -10px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  border-top-color: transparent;
-
-  animation: spin 1s infinite linear;
-  
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
+input[type='submit'] {
+  margin-left: 50px;
 }
 
 </style>
