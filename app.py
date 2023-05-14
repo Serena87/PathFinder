@@ -107,11 +107,13 @@ def button_cluster():
         template_index = i % 2
         if template_index == 0:
             template = blue_button_template
+            button_keywords = button_keywords_attributes
         else:
             template = green_button_template
+            button_keywords = button_keywords_tasks
 
         checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
-        button_html = template.format(name=name)
+        button_html = template.format(name=button_keywords[i//2])
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "</div>"
     html += "<br><br>"
