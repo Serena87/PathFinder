@@ -21,7 +21,7 @@ body {
     justify-content: center;   /* same */
 }
 /* The PathFinder logo */
-img { 
+#logo  { 
    max-width: 100%; /* ensures that the logo doesn`t exceed the width of the container */
    height: 200px;
    margin-left: 50px;
@@ -32,6 +32,11 @@ h1 {
   font: 'Inria Sans';
   font-size: 14px;
   color: white;
+  margin-left: 50px;
+}
+/* The legend */
+#legend { 
+  height: 100px;
   margin-left: 50px;
 }
 /* Text: Vänligen välj exakt 5 nyckelord! */
