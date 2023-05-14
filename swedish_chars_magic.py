@@ -27,18 +27,22 @@ test2 = 'Jag älskar Sverige!'
 test3 = 'Välj 5 som stämmer in med vem du är i arbetslivet!'
 testlist = ['Jägare','Mördare', 'Mångsidig', 'Älskade', 'Önskade', 'Åkomma']
 
+h1text = 'Här kan du välja 5 nyckelord som du känner passar in på dig som person och vad du kan tänka dig att göra!'
+h4text = 'Utifrån dina valda nyckelord ger vi dig rekommendationer på yrkesval som vi tror kan passa dig.'
 #print(testlist)
 #reslist = replace_swedish_chars_list(testlist)
 #print(reslist)
 #print(replace_swedish_chars(test3))
+print(replace_swedish_chars(h1text))
+print(replace_swedish_chars(h4text))
 
 # Define the list of keywords to the buttons:
-button_keywords_raw = get_random_words()
-print(button_keywords_raw)
-print()
+#button_keywords_raw = get_random_words()
+#print(button_keywords_raw)
+#print()
 # Replaces the swedish characters with HTML entities to display them properly on the website:
-button_keywords = replace_swedish_chars_list(button_keywords_raw)
-print(button_keywords)
+#button_keywords = replace_swedish_chars_list(button_keywords_raw)
+#print(button_keywords)
 
 # Swedish characters 
 # Ä - &Auml;
