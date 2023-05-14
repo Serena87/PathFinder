@@ -98,12 +98,13 @@ h5 {
     border-width: 5px;
   }
 /* **** Button effects **** */
-
 /* Clicked buttons */
 .greenbutton.clicked, .bluebutton.clicked {
   background-color:darkslategray;
   color: white;
+
 }
+
 /* Color change when hovering over the button */
 .greenbutton:hover, .bluebutton:hover {
     background-color: gray;
@@ -111,11 +112,8 @@ h5 {
   }
 /* Pressed effect */
 .greenbutton:active, .bluebutton:active {
-  /*background-color: gray; */
-  /*box-shadow: 0 3px #666;*/
   transform: translateY(3px);
 }
-
 /* Puts the buttons in their positions within the 9x9 grid, creating a round form.
 Starts with placing buttons in the centre and "grows" around the centre as the number
 of buttons increases. Maximum of 50 buttons. */
