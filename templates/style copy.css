@@ -73,7 +73,7 @@ h5 {
     justify-content: center;
     align-items: center;
     height: auto;
-    margin-top: 15rem;  /* Provides some space between the buttons and the text above */
+    margin-top: 8rem;  /* Provides some space between the buttons and the text above */
 }
 /* Attributes that are common for both button types: */
 .greenbutton, .bluebutton {
