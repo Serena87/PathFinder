@@ -51,7 +51,7 @@
         text-align: center;
       }
 
-      ul.my-list {
+      ul.occup-list {
         list-style: none;
         margin: 10px auto;
         max-width: 600px;
@@ -62,7 +62,7 @@
         margin: 10px 0;
       }
       
-      button.my-button {
+      button.occup-button {
         display: block;
         background-color: #fff;
         border: none;
@@ -106,10 +106,10 @@
     <div id="content">
       <h1>Rekommenderade yrkesval</h1>
       {% if occupations %}
-      <ul class="my-list">
+      <ul class="occup-list">
         {% for occupation in occupations %}
         <li>
-          <button class="my-button">{{ occupation }}</button>
+          <button class="occup-button" onclick="get_description('{{ occupation }}')">{{ occupation }}</button>
         </li>
         {% endfor %}
       </ul>
