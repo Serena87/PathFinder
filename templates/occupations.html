@@ -8,14 +8,13 @@
         background-color: #00002c;
         margin: 0;
         padding: 0;
+      }
+
+      .loading-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-      }
-
-      .loader-container {
-        text-align: center;
+        height: 100vh;
       }
 
       .logo {
@@ -55,7 +54,7 @@
 
       ul {
         list-style: none;
-        margin: 0 auto;
+        margin: 10px auto;
         max-width: 600px;
         padding: 0;
       }
@@ -93,10 +92,8 @@
     </style>
   </head>
   <body>
-    <div id="loading-container" class="loader-container">
-      <div class="loader">
-        <div class="logo">Loading<span class="arrow"></span></div>
-      </div>
+    <div id="loading-container" class="loading-container">
+      <div class="logo">Hämtar yrken<span class="arrow"></span></div>
     </div>
     <div id="content">
       <h1>Rekommenderade yrkesval</h1>
@@ -115,12 +112,14 @@
     <script>
       // Simulate loading time of 3 seconds
       setTimeout(function () {
-        document.getElementById('loading-container').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
+        document.getElementById("loading-container").style.display = "none";
+        document.getElementById("content").style.display = "block";
       }, 3000);
     </script>
   </body>
 </html>
+
+
 
 
 
