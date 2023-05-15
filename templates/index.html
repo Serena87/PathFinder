@@ -16,7 +16,7 @@
       var selectedContainer = document.getElementById("selected_keywords"); // Gets the array element that contains the chosen, cloned buttons
       var button = event.currentTarget.querySelector("button");             // Current button that is clicked
 
-      if (checkbox.checked) {                                       // if button is clicked, the checkbox is checked
+      if (checkbox.checked) {                                       // if button is being clicked/marked, the checkbox is checked
         if (count < 5) {                                            // check if number of clicked buttons are below 5
           count += 1;                                               // the counter increments by 1
           document.getElementById("counter").innerHTML = count;     // updates the counter number displayed
@@ -24,12 +24,9 @@
           moveSelectedButton(button);                               // Moves the clone of the clicked button to selected keywords
         }  
       } 
-      else if (!checkbox.checked) { // if button is unclicked/unmarked 
-              
-       
+      else if (!checkbox.checked) {                               // if button is being unclicked/unmarked 
         button.classList.remove("clicked");                       // the button gets unmarked, class "clicked" removed and the button gets its original color back
         removeSelectedButton(button);                             // Remove the button from selected keywords/selectedContainer                                                 
-        
       }
     }  
     
@@ -49,10 +46,10 @@
       var buttons = selectedContainer.querySelectorAll("button");
       var count = parseInt(document.getElementById("counter").innerHTML);   // Gets the current counter value
       for (var i = 0; i < buttons.length; i++) {
-        if (buttons[i].textContent === button.textContent) {
-          selectedContainer.removeChild(buttons[i].parentNode);
+        if (buttons[i].textContent === button.textContent) {        // checks if the buttons are the same (word)
+          selectedContainer.removeChild(buttons[i].parentNode);     // if yes, remove the button from selectedContainer
           count -= 1;                                               // decrements the counter by 1, since there is one less marked/chosen button
-          document.getElementById("counter").innerHTML = count;
+          document.getElementById("counter").innerHTML = count;     // updates the counter displayed
           break;
         }
       }
