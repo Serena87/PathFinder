@@ -3,6 +3,7 @@
   <head>
     <meta charset = 'utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script src="templates/javascript.js"></script>
     <title>PathFinder</title>
   </head>
 
@@ -12,7 +13,8 @@
         <img id= 'logo' src = 'https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/pathfinder_logga.jpg'>
       </div>
     </div>
-  
+    
+    <form method='post'>
     <div style="display: flex; flex-direction: column;">
       <div style="border: 2px solid #9FD33C; border-radius: 10px; padding: 10px; width: 100%; display: flex; align-items: center;">
         <div style="min-width: 10px; overflow: hidden;">
@@ -20,12 +22,14 @@
         </div>
         <div id="counter" style="color: white; font-size: 20px;">0</div>
         <img id="legend" src="https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/legend.jpg">
-        <h1>Här kan du välja 5 nyckelord som du känner passar in på dig som person och vad du kan tänka dig att göra! <br> Utifrån dina valda nyckelord ger vi dig rekommendationer på yrkesval som vi tror kan passa dig. Genom att markera och avmarkera bubblorna med nyckelord kan du lägga till och ta bort dem från listan med markerade nyckelord. <br> Nöjd? Klicka 'Submit'! <br> Använd 'Reset' för att rensa de val du gjort hittills. Lycka till!</h1>
+        <h1>Här kan du välja 5 nyckelord som du känner passar in på dig som person och vad du kan tänka dig att göra! 
+          <br> Utifrån dina valda nyckelord ger vi dig rekommendationer på yrkesval som vi tror kan passa dig. Genom att markera och avmarkera bubblorna med nyckelord kan du lägga till och ta bort dem från listan med markerade nyckelord. 
+          <br> Nöjd? Klicka 'Submit'! <br> Använd 'Reset' för att rensa de val du gjort hittills. Lycka till!</h1>
       </div>
       <div style="display: flex; align-items: center;">
         <h5>Dina valda nyckelord:</h5>
         <div style="margin-top: 5px; width: 525px; margin-left: 10px; height: 100px;" id="selected_keywords"></div>
-        <input type="submit" value="Submit" style="margin-left: 5px;">
+        <input type="submit" value="Submit" style="margin-left: 5px;"><input type='reset' value='Reset' onclick='handleReset(event)'>
       </div>
     </div>
     
