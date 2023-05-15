@@ -50,7 +50,7 @@ def button_cluster():
             template = green_button_template
             button_keywords = button_keywords_tasks
         
-        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
+        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{button_keywords[i//2]}' style='display:none;'>"
         button_html = template.format(name=button_keywords[i//2])
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "</div>"
@@ -69,10 +69,7 @@ def button_cluster():
             # Generate HTML code for matching occupations page
             match_html = render_template('occupations.html', occupations=occupations)
             return match_html
-        elif len(checked_buttons) > 0:
-            html += "<br><br>"
-            html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
-
+        
     html += "</body></html>" # END of the whole HTML code
 
     # Render the HTML code as a response

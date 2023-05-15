@@ -58,11 +58,18 @@ h1 {
 #counter {
   color: white;
   font-size: 20px;
+  margin-left: 5px;
 }
 /* The legend */
 #legend { 
   height: 110px;
   margin-left: 50px;
+}
+/* Text "av 5" */
+h6 {
+  font-size: 20px;
+  color: white;
+  margin-left: 5px;
 }
 /* The div containing chosen_keywords div */
 #keyword_div {
@@ -83,13 +90,6 @@ h1 {
   font-size: 10px;
 }
 
-/* Text: Vänligen välj exakt 5 nyckelord! */
-h2 {
-  font: 'Inria Sans';
-  font-size: 14px;
-  color: white;
-  margin-left: 50px;
-}
 /* Text: Markerade nyckelord: */
 h3 {
   font: 'Inria Sans';
