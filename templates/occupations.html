@@ -5,18 +5,61 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #00002c;;
+        background-color: #00002c;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
       }
+
+      .loader-container {
+        text-align: center;
+      }
+
+      .logo {
+        color: #9FD33C;
+        font-size: 75px;
+        font-weight: bold;
+        position: relative;
+      }
+
+      .arrow {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 2px;
+        background-color: #9FD33C;
+        animation: arrowAnimation 1s infinite;
+      }
+
+      @keyframes arrowAnimation {
+        0% {
+          width: 20px;
+        }
+        50% {
+          width: 175px;
+        }
+        100% {
+          width: 20px;
+        }
+      }
+
       h1 {
         color: #9FD33C;
         text-align: center;
       }
+
       ul {
         list-style: none;
         margin: 0 auto;
         max-width: 600px;
         padding: 0;
       }
+
       li {
         margin: 10px 0;
         background-color: #fff;
@@ -24,45 +67,60 @@
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         padding: 10px;
       }
+
       p {
         text-align: center;
         font-size: 1.2em;
         color: #696969;
       }
+
       #back-button {
         display: block;
         margin: 20px auto;
         padding: 10px 20px;
-        
         border-color: #9FD33C;
         border-width: 2px;
         background-color: #00002c;
         color: #9FD33C;
         border-radius: 5px;
         font-size: 14px;
-        cursor: pointer; /* Add pointer cursor on hover */
+        cursor: pointer;
+      }
+
+      #content {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <h1>Rekommenderade yrkesval</h1>
-    {% if occupations %}
+    <div id="loading-container" class="loader-container">
+      <div class="loader">
+        <div class="logo">Loading<span class="arrow"></span></div>
+      </div>
+    </div>
+    <div id="content">
+      <h1>Rekommenderade yrkesval</h1>
+      {% if occupations %}
       <ul>
         {% for occupation in occupations %}
-          <li>{{ occupation }}</li>
+        <li>{{ occupation }}</li>
         {% endfor %}
       </ul>
-      <button id="back-button" onclick="window.history.back();">Gå tillbaka</button>
-    {% else %}
+      {% else %}
       <p>Inga matchande yrkesval hittade.</p>
+      {% endif %}
       <button id="back-button" onclick="window.history.back();">Gå tillbaka</button>
-    {% endif %}
+    </div>
+
+    <script>
+      // Simulate loading time of 3 seconds
+      setTimeout(function () {
+        document.getElementById('loading-container').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      }, 3000);
+    </script>
   </body>
 </html>
 
 
 
-
-
-
- 
