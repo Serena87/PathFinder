@@ -19,15 +19,6 @@ def button_cluster():
     button_keywords_tasks = get_arbetsuppgifter() # from backend, list with 15 work tasks
     button_keywords_mixed = list_mixer(button_keywords_attributes, button_keywords_tasks) # adding the two lists together to new list with 30 words
     random.shuffle(button_keywords_mixed) # Shuffles the words in the list so that they are mixed before creating the buttons/bubbles with the list
-    
-    # For adjusting the buttons, easier with 30 numbers
-    #button_keywords = []
-    #for i in range(1, 31):
-        #button_keywords.append(str(i))
-
-    # Read the JavaScript code:
-    #with open('templates/button_listeners.js', 'r') as js:
-     #  js_read = js.read()
 
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r') as fblue:
@@ -54,7 +45,7 @@ def button_cluster():
             var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
             checkbox.checked = !checkbox.checked;
 
-            var count = parseInt(document.getElementById("counter").innerHTML);
+            var count = parseInt(document.getElementById("counter").innerHTML); // Gets the current counter value
 
             // Change button color based on checkbox state
             var button = event.currentTarget.querySelector("button");
@@ -62,13 +53,34 @@ def button_cluster():
                 count += 1;
                 document.getElementById("counter").innerHTML = count;
                 button.classList.add("clicked");
+                moveSelectedButton(button); // Move the clicked button to selected keywords
+            
             } else {
                 count -= 1;
                 document.getElementById("counter").innerHTML = count;
                 button.classList.remove("clicked");
+                removeSelectedButton(button); // Remove the button from selected keywords
+            }
+            
+        }
+        function moveSelectedButton(button) {
+            var selectedContainer = document.getElementById("selected_keywords");
+            var clonedButton = button.parentNode.cloneNode(true);
+            var originalButton = clonedButton.querySelector("button");
+            originalButton.classList.remove("clicked");
+            selectedContainer.appendChild(clonedButton);
+        
+        }
+        function removeSelectedButton(button) {
+            var selectedContainer = document.getElementById("selected_keywords");
+            var buttons = selectedContainer.querySelectorAll("button");
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].textContent === button.textContent) {
+                    selectedContainer.removeChild(buttons[i].parentNode);
+                    break;
+                }
             }
         }
-
         function handleReset(event) {
             event.preventDefault();
             var checkboxes = document.querySelectorAll("input[type=checkbox]");
@@ -81,6 +93,10 @@ def button_cluster():
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove("clicked");
             }
+            // Clear selected keywords
+            var selectedContainer = document.getElementById("selected_keywords");
+            selectedContainer.innerHTML = "";
+
             document.getElementById("counter").innerHTML = 0;
         
         };
@@ -95,11 +111,13 @@ def button_cluster():
         template_index = i % 2
         if template_index == 0:
             template = blue_button_template
+            button_keywords = button_keywords_attributes
         else:
             template = green_button_template
+            button_keywords = button_keywords_tasks
 
         checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
-        button_html = template.format(name=name)
+        button_html = template.format(name=button_keywords[i//2])
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "</div>"
     html += "<br><br>"
