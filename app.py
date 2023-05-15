@@ -34,82 +34,10 @@ def button_cluster():
     with open('templates/style.css', 'r', encoding = 'utf-8') as stylesheet:
         css_read = stylesheet.read()
 
-    # Read the JavaScript code from file:
-    with open('templates/javascript.js', 'r', encoding = 'utf-8') as js:
-        js_read = js.read() # Read the index html code from file:
-
     # Start HTML code
-    html = html = html_read # Reads from html file
+    html = html = html_read # Reads from html file (including JavaScript code)
     html += css_read  # Reads from CSS file
-    html += js_read   # Reads from JS file
-    # JavaScript code for the buttons: TODO TRY TO MOVE THE SCRIPT INTO index.html file
-    #html += "<script>"
-    #html += """
-    #  
-    #    function handleClick(event) {
-    #        event.preventDefault();
-    #        var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
-    #        checkbox.checked = !checkbox.checked;
-
-    #        var count = parseInt(document.getElementById("counter").innerHTML); // Gets the current counter value
-
-    #        // Change button color based on checkbox state
-    #        var button = event.currentTarget.querySelector("button");
-    #        if (checkbox.checked) {
-    #            count += 1;
-    #            document.getElementById("counter").innerHTML = count;
-    #            button.classList.add("clicked");
-    #            moveSelectedButton(button); // Move the clicked button to selected keywords
-            
-    #        } else {
-    #            count -= 1;
-    #            document.getElementById("counter").innerHTML = count;
-    #            button.classList.remove("clicked");
-    #            removeSelectedButton(button); // Remove the button from selected keywords
-    #        }
-            
-    #    }
-    #    function moveSelectedButton(button) {
-    #        var selectedContainer = document.getElementById("selected_keywords");
-    #        var clonedButton = button.parentNode.cloneNode(true);
-    #        var originalButton = clonedButton.querySelector("button");
-    #        originalButton.classList.remove("clicked");
-    #        selectedContainer.appendChild(clonedButton);
-        
-    #    }
-    #    function removeSelectedButton(button) {
-    #        var selectedContainer = document.getElementById("selected_keywords");
-    #        var buttons = selectedContainer.querySelectorAll("button");
-    #        for (var i = 0; i < buttons.length; i++) {
-    #            if (buttons[i].textContent === button.textContent) {
-    #                selectedContainer.removeChild(buttons[i].parentNode);
-    #                break;
-    #            }
-    #        }
-    #    }
-    #    function handleReset(event) {
-    #        event.preventDefault();
-    #        var checkboxes = document.querySelectorAll("input[type=checkbox]");
-    #        for (var i = 0; i < checkboxes.length; i++) {
-    #            checkboxes[i].checked = false;
-    #        }
-            
-    #        // Remove button color classes
-    #        var buttons = document.querySelectorAll("button");
-    #        for (var i = 0; i < buttons.length; i++) {
-    #            buttons[i].classList.remove("clicked");
-    #        }
-    #        // Clear selected keywords
-    #        var selectedContainer = document.getElementById("selected_keywords");
-    #        selectedContainer.innerHTML = "";
-
-    #        document.getElementById("counter").innerHTML = 0;
-        
-    #    };
-
-    #"""
-    #html += "</script>"
-   
+    
     # HTML code for the request form containing the bubbles and submit/reset buttons
     html += "<div class='button-container'>"
     # Generate the HTML code for the button cluster and creates hidden checkboxes spanning over the buttons:

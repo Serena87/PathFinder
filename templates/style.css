@@ -27,7 +27,26 @@ body {
    margin-left: 50px;
    margin-bottom: 1rem; /* Provides some space between the logo and the text below */
 }
-/* The header text, description */
+/* The header div containing head_border_div and head_div_2 */
+#head_div {
+  display: flex; 
+  flex-direction: column;
+}
+/* The header div with border around, containing head_div_2 */
+#head_border_div {
+  border: 2px solid #9FD33C;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+/* The header div_2, containing h3 */
+#head_div_2 {
+  min-width: 10px;
+  overflow: hidden;
+}
+/* The header text, description " Här kan du välja..." */
 h1 {
   font: 'Inria Sans';
   font-size: 14px;
@@ -35,11 +54,35 @@ h1 {
   width: 600px;
   margin-left: 200px;
 }
+/* The counter */
+#counter {
+  color: white;
+  font-size: 20px;
+}
 /* The legend */
 #legend { 
   height: 110px;
   margin-left: 50px;
 }
+/* The div containing chosen_keywords div */
+#keyword_div {
+  display: flex;
+  align-items: center;
+}
+/* The div containing the chosen bubbles, selectedContainer */
+#selected_keywords {
+  margin-top: 5px;
+  width: 525px; /* Space enough for 5 bubbles */
+  margin-left: 10px;
+  height: 100px;
+}
+/* Shrinks the selected buttons when moved to selectedContainer list */
+#selected_keywords button {
+  width: 100px;
+  height: 100px;
+  font-size: 10px;
+}
+
 /* Text: Vänligen välj exakt 5 nyckelord! */
 h2 {
   font: 'Inria Sans';
@@ -115,15 +158,9 @@ h5 {
 .greenbutton:active, .bluebutton:active {
   transform: translateY(3px);
 }
-/* Shrinks the selected buttons when moved to selectedContainer list */
-#selected_keywords button {
-  width: 100px;
-  height: 100px;
-  font-size: 10px;
-}
 
 /* Style for the Submit and Reset buttons */
-input[type="submit"], input[type="reset"] {
+#submitButton, #resetButton {
   display: block;
   float: left;
   margin-right: 2px;
@@ -139,11 +176,11 @@ input[type="submit"], input[type="reset"] {
   cursor: pointer; /* Add pointer cursor on hover */
 }
 /* Style specific for the Submit button */
-input[type='submit'] { 
+#submitButton { 
   margin-left: 5px;
 }
 /* Style specific for the Reset button */
-input[type="reset"] {
+#resetButton {
   margin-left: 300px;
 }
 

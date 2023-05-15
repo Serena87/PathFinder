@@ -3,8 +3,72 @@
   <head>
     <meta charset = 'utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <script src="templates/javascript.js"></script>
     <title>PathFinder</title>
+
+    <!-- JavaScript code here -->
+    <script> 
+    function handleClick(event) {
+    event.preventDefault();
+    var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
+    checkbox.checked = !checkbox.checked;
+
+        var count = parseInt(document.getElementById("counter").innerHTML); // Gets the current counter value
+
+            // Change button color based on checkbox state
+            var button = event.currentTarget.querySelector("button");
+            if (checkbox.checked) {
+                count += 1;
+                document.getElementById("counter").innerHTML = count;
+                button.classList.add("clicked");
+                moveSelectedButton(button); // Move the clicked button to selected keywords
+            
+            } else {
+                count -= 1;
+                document.getElementById("counter").innerHTML = count;
+                button.classList.remove("clicked");
+                removeSelectedButton(button); // Remove the button from selected keywords
+            }
+            
+        }
+        function moveSelectedButton(button) {
+            var selectedContainer = document.getElementById("selected_keywords");
+            var clonedButton = button.parentNode.cloneNode(true);
+            var originalButton = clonedButton.querySelector("button");
+            originalButton.classList.remove("clicked");
+            selectedContainer.appendChild(clonedButton);
+        
+        }
+        function removeSelectedButton(button) {
+            var selectedContainer = document.getElementById("selected_keywords");
+            var buttons = selectedContainer.querySelectorAll("button");
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].textContent === button.textContent) {
+                    selectedContainer.removeChild(buttons[i].parentNode);
+                    break;
+                }
+            }
+        }
+        function handleReset(event) {
+            event.preventDefault();
+            var checkboxes = document.querySelectorAll("input[type=checkbox]");
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            
+            // Remove button color classes
+            var buttons = document.querySelectorAll("button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("clicked");
+            }
+            // Clear selected keywords
+            var selectedContainer = document.getElementById("selected_keywords");
+            selectedContainer.innerHTML = "";
+
+            document.getElementById("counter").innerHTML = 0;
+        
+        };
+</script> <!-- End of JavaScript code -->
+
   </head>
 
   <body> 
@@ -13,25 +77,26 @@
         <img id= 'logo' src = 'https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/pathfinder_logga.jpg'>
       </div>
     </div>
-    
+
+    <!-- Start of the request form -->
     <form method='post'>
-    <div style="display: flex; flex-direction: column;">
-      <div style="border: 2px solid #9FD33C; border-radius: 10px; padding: 10px; width: 100%; display: flex; align-items: center;">
-        <div style="min-width: 10px; overflow: hidden;">
+    <div id= 'head_div'>
+      <div id= 'head_border_div'>
+        <div id = 'head_div_2'>
           <h3>Markerade nyckelord:</h3>
         </div>
-        <div id="counter" style="color: white; font-size: 20px;">0</div>
+        <div id="counter">0</div>
         <img id="legend" src="https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/legend.jpg">
         <h1>Här kan du välja 5 nyckelord som du känner passar in på dig som person och vad du kan tänka dig att göra! 
           <br> Utifrån dina valda nyckelord ger vi dig rekommendationer på yrkesval som vi tror kan passa dig. Genom att markera och avmarkera bubblorna med nyckelord kan du lägga till och ta bort dem från listan med markerade nyckelord. 
           <br> Nöjd? Klicka 'Submit'! <br> Använd 'Reset' för att rensa de val du gjort hittills. Lycka till!</h1>
       </div>
-      <div style="display: flex; align-items: center;">
+      <div id="keyword_div">
         <h5>Dina valda nyckelord:</h5>
-        <div style="margin-top: 5px; width: 525px; margin-left: 10px; height: 100px;" id="selected_keywords"></div>
-        <input type="submit" value="Submit" style="margin-left: 5px;"><input type='reset' value='Reset' onclick='handleReset(event)'>
+        <div id="selected_keywords"></div>
+        <input id = "submitButton" type="submit" value="Submit"><input id = "resetButton" type='reset' value='Reset' onclick='handleReset(event)'>
       </div>
     </div>
-    
+    <!-- Continuing in app.py with generating HTML for the buttons/bubbles-->
     
     
