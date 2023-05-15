@@ -73,6 +73,15 @@
       document.getElementById("counter").innerHTML = 0;
     };
 
+    function validateForm() {
+      var count = parseInt(document.getElementById("counter").innerHTML);
+      if (count < 5) {
+        alert("Vänligen välj 5 nyckelord!");
+        return false;  // Prevents the form submission
+      }
+      return true;     // Allows the form submission
+    }
+
 </script> <!-- End of JavaScript code -->
 
   </head>
@@ -85,7 +94,7 @@
     </div>
 
     <!-- Start of the request form -->
-    <form method='post'>
+    <form method='post' onsubmit = 'return validateForm()'>
     <div id= 'head_div'>
       <div id= 'head_border_div'>
         <div id = 'head_div_2'>
