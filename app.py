@@ -21,17 +21,17 @@ def button_cluster():
     random.shuffle(button_keywords_mixed) # Shuffles the words in the list so that they are mixed before creating the buttons/bubbles with the list
 
     # Read the button templates from the html files:
-    with open('templates/blue_button_template.html', 'r') as fblue:
+    with open('templates/blue_button_template.html', 'r', encoding = 'utf-8') as fblue:
         blue_button_template = fblue.read()
-    with open('templates/green_button_template.html', 'r') as fgreen:
+    with open('templates/green_button_template.html', 'r', encoding = 'utf-8') as fgreen:
         green_button_template = fgreen.read()
 
     #Read the index html code for header from file:
-    with open('templates/index_Stine.html', 'r') as index:
+    with open('templates/index.html', 'r', encoding = 'utf-8') as index:
         header_read = index.read() # Read the index html code from file:
     
     # Read the CSS code from the stylesheet:
-    with open('templates/style copy.css', 'r') as stylesheet:
+    with open('templates/style.css', 'r', encoding = 'utf-8') as stylesheet:
         css_read = stylesheet.read()
 
     # Generate the HTML code for the button cluster
@@ -105,7 +105,8 @@ def button_cluster():
     html += "</script>"
    
     # End of head and start of html body
-    html += "</head><body><form method='post'>"
+    html += "</head><body>"
+    html += "<form method='post'>"
     html += "<div class='button-container'>"
     for i, name in enumerate(button_keywords_mixed):
         template_index = i % 2

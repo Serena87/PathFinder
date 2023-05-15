@@ -1,221 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
   <head>
+    <meta charset = 'utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>PathFinder</title>
-    <style>
-      /* CSS-regler för container-elementet */
-      body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        color: #f5f5f5;
-      }
-
-      /* CSS-regler för header-elementet */
-      header {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 2rem;
-      }
-
-      /* CSS-regler för knapparna */
-      .button {
-        background-color: #4caf50;
-        border: none;
-        color: white;
-        padding: 16px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 50%;
-      }
-
-      .button-blue {
-        background-color: #2196f3;
-      }
-
-      .button-pink {
-        background-color: #e91e63;
-      }
-
-      /* CSS-regler för partiklarna */
-      #particles-js {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50% 50%;
-        z-index: -1;
-      }
-    </style>
   </head>
-  <body>
-    <header>PathFinder</header>
-    <button class="button button-blue" onclick="fireworks()"></button>
-    <button class="button" onclick="fireworks()"></button>
-    <button class="button button-pink" onclick="fireworks()"></button>
 
-    <!-- Partiklarna -->
-    <div id="particles-js"></div>
-
-    <!-- Skript för partiklarna -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-      // Konfiguration för partiklarna
-      particlesJS("particles-js", {
-        particles: {
-          number: {
-            value: 100,
-            density: {
-              enable: true,
-              value_area: 800,
-            },
-          },
-          color: {
-            value: "#ffffff",
-          },
-          shape: {
-            type: "circle",
-            stroke: {
-              width: 0,
-              color: "#000000",
-            },
-            polygon: {
-              nb_sides: 5,
-            },
-            image: {
-              src: "img/github.svg",
-              width: 100,
-              height: 100,
-            },
-          },
-          opacity: {
-            value: 0.5,
-            random: false,
-            anim: {
-              enable: false,
-              speed: 1,
-              opacity_min: 0.1,
-              sync: false,
-            },
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: false,
-              speed:
-              40,
-          sync: false,
-        },
-      },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: "#ffffff",
-        opacity: 0.4,
-        width: 1,
-      },
-      move: {
-        enable: true,
-        speed: 6,
-        direction: "none",
-        random: false,
-        straight: false,
-        out_mode: "out",
-        bounce: false,
-        attract: {
-          enable: false,
-          rotateX: 600,
-          rotateY: 1200,
-        },
-      },
-    },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: {
-          enable: true,
-          mode: "repulse",
-        },
-        onclick: {
-          enable: true,
-          mode: "push",
-        },
-        resize: true,
-      },
-      modes: {
-        grab: {
-          distance: 400,
-          line_linked: {
-            opacity: 1,
-          },
-        },
-        bubble: {
-          distance: 400,
-          size: 40,
-          duration: 2,
-          opacity: 8,
-          speed: 3,
-        },
-        repulse: {
-          distance: 100,
-          duration: 0.4,
-        },
-        push: {
-          particles_nb: 4,
-        },
-        remove: {
-          particles_nb: 2,
-        },
-      },
-    },
-    retina_detect: true,
-  });
-
-  // Funktion för fyrverkeri-effekten
-  function fireworks() {
-    var width = window.innerWidth;
-    var height = window.innerHeight;
-
-    // Skapa en ny canvas
-    var canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    canvas.style.position = "absolute";
-    canvas.style.top = "0";
-    canvas.style.left = "0";
-    canvas.style.pointerEvents = "none";
-    document.body.appendChild(canvas);
-
-    // Konfiguration för fyrverkeri-partiklarna
-    var config = {
-      maxParticles: 150,
-      sizeVariations: 3,
-      speed: 1,
-      colorVariations: 5,
-      lifeTime: 100,
-      directionAngle: 180,
-      directionVariation: 360,
-      spread: 150,
-      duration: 2000,
-      delay: 0,
-      warp: false,
-    };
-
-    // Skapa en ny fyrverkeri-instans och starta den
-    var fireworks = new Fireworks(canvas, config);
-    fireworks.start();
-  }
-</script>
-
+  <body> 
+    <div class="center-container">
+      <div class="center-content">
+        <img id= 'logo' src = 'https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/pathfinder_logo_gr%C3%B6n.jpg'>
+      </div>
+    </div>
+  
+    <div style="display: flex; flex-direction: column;">
+      <div style="border: 2px solid #9FD33C; border-radius: 10px; padding: 10px; width: 100%; display: flex; align-items: center;">
+        <div style="min-width: 10px; overflow: hidden;">
+          <h3>Markerade nyckelord:</h3>
+        </div>
+        <div id="counter" style="color: white; font-size: 20px;">0</div>
+        <img id="legend" src="https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/legend.jpg">
+        <h1>Här kan du välja 5 nyckelord som du känner passar in på dig som person och vad du kan tänka dig att göra! <br> Utifrån dina valda nyckelord ger vi dig rekommendationer på yrkesval som vi tror kan passa dig. Genom att markera och avmarkera bubblorna med nyckelord kan du lägga till och ta bort dem från listan med markerade nyckelord. <br> Nöjd? Klicka 'Submit'! <br> Använd 'Reset' för att rensa de val du gjort hittills. Lycka till!</h1>
+      </div>
+      <div style="display: flex; align-items: center;">
+        <h5>Dina valda nyckelord:</h5>
+        <div style="margin-top: 5px; width: 525px; margin-left: 10px; height: 100px;" id="selected_keywords"></div>
+        <input type="submit" value="Submit" style="margin-left: 5px;">
+      </div>
+    </div>
+    
+    
+    
