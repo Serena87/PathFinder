@@ -3,6 +3,9 @@ import time
 from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper
 from list_work import list_mixer
 import random
+from chatintegration import get_description
+
+
 
 app = Flask(__name__)
 
