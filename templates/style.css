@@ -122,8 +122,8 @@ h5 {
 
 /* Attributes that are common for both button types: */
 .greenbutton, .bluebutton {
-    width: 140px;
-    height: 140px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
@@ -237,16 +237,16 @@ of buttons increases. Maximum of 50 buttons. */
   grid-area: 6 / 7
 }
 .button-container :nth-child(17) {
-  grid-area: 7 / 5
+  grid-area: 2 / 3  /**/  
 }
 .button-container :nth-child(18) {
-  grid-area: 7 / 6
+  grid-area: 3 / 8  /**/ 
 }
 .button-container :nth-child(19) {
   grid-area: 4 / 2 
 }
 .button-container :nth-child(20) {
-  grid-area: 6 / 3 /**/
+  grid-area: 6 / 3 
 }
 .button-container :nth-child(21) {
   grid-area: 5 / 3
