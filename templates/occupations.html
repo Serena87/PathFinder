@@ -32,7 +32,37 @@
         height: 2px;
         background-color: #9FD33C;
         animation: arrowAnimation 1s infinite;
+
       }
+
+      .occupations-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .occupations-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+
+      .occupations-list li {
+        margin: 10px 0;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+      }
+
+      .description-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
 
       @keyframes arrowAnimation {
         0% {
@@ -96,17 +126,59 @@
     </div>
     <div id="content">
       <h1>Rekommenderade yrkesval</h1>
-      {% if occupations %}
-      <ul>
-        {% for occupation in occupations %}
-        <li>{{ occupation }}</li>
-        {% endfor %}
-      </ul>
-      {% else %}
-      <p>Inga matchande yrkesval hittade.</p>
-      {% endif %}
+      <div class="occupations-container">
+        {% if occupations %}
+        <ul class="occupations-list">
+          {% for occupation in occupations %}
+          <li>
+            <form method="post" action="/occupation_description">
+              <input type="hidden" name="occupation" value="{{ occupation }}">
+              <button type="submit">{{ occupation }}</button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>Inga matchande yrkesval hittade.</p>
+        {% endif %}
+      </div>
+      
       <button id="back-button" onclick="window.history.back();">Gå tillbaka</button>
-    </div>
+      <div class="description-container">
+        <div id="description"></div>
+      </div>
+      
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const occupationButtons = document.querySelectorAll('form[action="/occupation_description"]');
+
+    occupationButtons.forEach((button) => {
+      button.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const occupation = button.querySelector('input[name="occupation"]').value;
+        getDescription(occupation);
+      });
+    });
+  });
+
+  async function getDescription(occupation) {
+    const response = await fetch('/occupation_description', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `occupation=${encodeURIComponent(occupation)}`,
+    });
+
+    const description = await response.text();
+    displayDescription(description);
+  }
+
+  function displayDescription(description) {
+    const descriptionContainer = document.getElementById('description');
+    descriptionContainer.textContent = description;
+  }
+</script>
 
     <script>
       // Simulate loading time of 3 seconds

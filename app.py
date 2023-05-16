@@ -3,6 +3,11 @@ import time
 from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper
 from list_work import list_mixer
 import random
+import openai
+from chatintegration import get_description 
+
+#Lägg till egen nyckel!
+openai.api_key = "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"
 
 app = Flask(__name__)
 
@@ -62,7 +67,7 @@ def button_cluster():
         # Create list of checked button values
         checked_buttons = [request.form.get(f'checkbox_{i}') for i in range(len(button_keywords_mixed))]
         checked_buttons = [b for b in checked_buttons if b is not None]
-
+        
         # Call function to get occupations based on checked buttons
         if len(checked_buttons) == 5:
             occupations = get_occupation2(*checked_buttons)
@@ -74,6 +79,15 @@ def button_cluster():
 
     # Render the HTML code as a response
     return html
+
+# Ny route som hanterar requests
+@app.route('/occupation_description', methods=['POST'])
+def occupation_description():
+    if request.method == 'POST':
+        occupation = request.form.get('occupation')
+        description = get_description(occupation)
+
+        return description
 
 if __name__ == '__main__':
     app.run()
