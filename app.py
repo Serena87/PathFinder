@@ -21,92 +21,26 @@ def button_cluster():
     random.shuffle(button_keywords_mixed) # Shuffles the words in the list so that they are mixed before creating the buttons/bubbles with the list
 
     # Read the button templates from the html files:
-    with open('templates/blue_button_template.html', 'r') as fblue:
+    with open('templates/blue_button_template.html', 'r', encoding = 'utf-8') as fblue:
         blue_button_template = fblue.read()
-    with open('templates/green_button_template.html', 'r') as fgreen:
+    with open('templates/green_button_template.html', 'r', encoding = 'utf-8') as fgreen:
         green_button_template = fgreen.read()
 
-    #Read the index html code for header from file:
-    with open('templates/index_Stine.html', 'r') as index:
-        header_read = index.read() # Read the index html code from file:
+    # Read the index html code from file:
+    with open('templates/index.html', 'r', encoding = 'utf-8') as index:
+        html_read = index.read() 
     
     # Read the CSS code from the stylesheet:
-    with open('templates/style copy.css', 'r') as stylesheet:
+    with open('templates/style.css', 'r', encoding = 'utf-8') as stylesheet:
         css_read = stylesheet.read()
 
-    # Generate the HTML code for the button cluster
-    html = html = header_read
-    html += css_read
-    html += "<script>"
-    html += """
-       
-        function handleClick(event) {
-            event.preventDefault();
-            var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
-            checkbox.checked = !checkbox.checked;
-
-            var count = parseInt(document.getElementById("counter").innerHTML); // Gets the current counter value
-
-            // Change button color based on checkbox state
-            var button = event.currentTarget.querySelector("button");
-            if (checkbox.checked) {
-                count += 1;
-                document.getElementById("counter").innerHTML = count;
-                button.classList.add("clicked");
-                moveSelectedButton(button); // Move the clicked button to selected keywords
-            
-            } else {
-                count -= 1;
-                document.getElementById("counter").innerHTML = count;
-                button.classList.remove("clicked");
-                removeSelectedButton(button); // Remove the button from selected keywords
-            }
-            
-        }
-        function moveSelectedButton(button) {
-            var selectedContainer = document.getElementById("selected_keywords");
-            var clonedButton = button.parentNode.cloneNode(true);
-            var originalButton = clonedButton.querySelector("button");
-            originalButton.classList.remove("clicked");
-            selectedContainer.appendChild(clonedButton);
-        
-        }
-        function removeSelectedButton(button) {
-            var selectedContainer = document.getElementById("selected_keywords");
-            var buttons = selectedContainer.querySelectorAll("button");
-            for (var i = 0; i < buttons.length; i++) {
-                if (buttons[i].textContent === button.textContent) {
-                    selectedContainer.removeChild(buttons[i].parentNode);
-                    break;
-                }
-            }
-        }
-        function handleReset(event) {
-            event.preventDefault();
-            var checkboxes = document.querySelectorAll("input[type=checkbox]");
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = false;
-            }
-            
-            // Remove button color classes
-            var buttons = document.querySelectorAll("button");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("clicked");
-            }
-            // Clear selected keywords
-            var selectedContainer = document.getElementById("selected_keywords");
-            selectedContainer.innerHTML = "";
-
-            document.getElementById("counter").innerHTML = 0;
-        
-        };
-
-    """
-    html += "</script>"
-   
-    # End of head and start of html body
-    html += "</head><body><form method='post'>"
+    # Start HTML code
+    html = html = html_read # Reads from html file (including JavaScript code)
+    html += css_read  # Reads from CSS file
+    
+    # HTML code for the request form containing the bubbles and submit/reset buttons
     html += "<div class='button-container'>"
+    # Generate the HTML code for the button cluster and creates hidden checkboxes spanning over the buttons:
     for i, name in enumerate(button_keywords_mixed):
         template_index = i % 2
         if template_index == 0:
@@ -115,17 +49,13 @@ def button_cluster():
         else:
             template = green_button_template
             button_keywords = button_keywords_tasks
-
-        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{name}' style='display:none;'>"
+        
+        checkbox_html = f"<input type='checkbox' name='checkbox_{i}' value='{button_keywords[i//2]}' style='display:none;'>"
         button_html = template.format(name=button_keywords[i//2])
         html += f"<label onclick='handleClick(event)'>{checkbox_html}<span class='button-label'>{button_html}</span></label>"
     html += "</div>"
     html += "<br><br>"
-    
-    # Reset and Submit buttons
-    html += "<input type='submit' value='Submit'>"
-    html += "<input type='reset' value='Reset' onclick='handleReset(event)'>"
-    html += "</form>"
+    html += "</form>" # End of request form
    
     # Get the list of checked button values and display matching occupations
     if request.method == 'POST':
@@ -139,20 +69,15 @@ def button_cluster():
             # Generate HTML code for matching occupations page
             match_html = render_template('occupations.html', occupations=occupations)
             return match_html
-        elif len(checked_buttons) > 0:
-            html += "<br><br>"
-            html += "<h2>Vänligen välj exakt 5 nyckelord!</h2>"
-
-
-    html += "</body></html>"
+        
+    html += "</body></html>" # END of the whole HTML code
 
     # Render the HTML code as a response
     return html
 
-
-
 if __name__ == '__main__':
     app.run()
+
 
 
 

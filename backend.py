@@ -19,7 +19,7 @@ import random
 # Hämtar från fil
 
 def get_random_words():
-    with open(('ord_till_frontend.txt'), 'r') as file:
+    with open(('ord_till_frontend.txt'), 'r', encoding = 'utf-8') as file:
         words = file.read().splitlines()
     
     if 50 >= len(words):
