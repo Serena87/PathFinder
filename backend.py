@@ -34,10 +34,10 @@ def get_egenskaper():
     with open(('ord_egenskaper.txt'), 'r', encoding='utf-8') as file:
         words = file.read().splitlines()
     
-    if 15 >= len(words):
+    if 16 >= len(words):
         return words
     
-    random_words = random.sample(words, 15)
+    random_words = random.sample(words, 16)
 
     return random_words
 
