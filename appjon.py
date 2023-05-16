@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import time
 from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper
 from list_work import list_mixer
@@ -153,7 +153,10 @@ def button_cluster():
     # Render the HTML code as a response
     return html
 
-
+@app.route('/get_description/<occupation>')
+def new_description(occupation):
+    description = get_description(occupation)
+    return jsonify(description=description)
 
 if __name__ == '__main__':
     app.run()

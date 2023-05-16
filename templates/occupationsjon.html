@@ -95,7 +95,23 @@
       }
 
       #content {
-        display: none;
+        display: none; 
+      }
+      .new-box {
+        display: block;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        width: 600px;
+        height: 400px;
+        padding: 10px;
+        text-align: left; 
+      }
+      .new-box-content {
+        color: #696969;
+        font-size: 1.2em;
+        margin-top: 50px;
       }
     </style>
   </head>
@@ -109,7 +125,7 @@
       <ul class="occup-list">
         {% for occupation in occupations %}
         <li>
-          <button class="occup-button" onclick="get_description('{{ occupation }}')">{{ occupation }}</button>
+          <button class="occup-button" onclick="get_description('läkare')">{{ occupation }}</button>
         </li>
         {% endfor %}
       </ul>
@@ -119,6 +135,12 @@
       <button id="back-button" onclick="window.history.back();">Gå tillbaka</button>
     </div>
 
+    <div class="new-box">
+      <p id="new-box-text">här kanske</p>
+        <div class="textContent">Klicka på yrke för att få beskrivning</div>>
+      <!-- Add your content for the new box here -->
+    </div>
+
     <script>
       // Simulate loading time of 3 seconds
       setTimeout(function () {
@@ -126,6 +148,20 @@
         document.getElementById("content").style.display = "block";
       }, 3000);
     </script>
+
+    <script>
+      fetch('/get_description/' + occupation)
+        .then(response => response.json())
+        .then(data => {
+          // Update the content of the new box with the received description
+          const newBox = document.querySelector('.new-box');
+          newBox.textContent = data.description;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    </script>
+
   </body>
 </html>
 
