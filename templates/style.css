@@ -105,9 +105,9 @@ h5 {
   color: white;
   margin-left: 50px;
 }
-/* The container for all the keyword buttons, grid type */
+/* The container for all the keyword buttons, grid type (original version) */
 .button-container {
-    max-width:100%;
+    max-width: 100%;
     display: grid;
     grid-template-columns: 9;
     grid-template-rows: 9;
@@ -118,6 +118,7 @@ h5 {
     align-items: center;
     height: auto;
     margin-top: 1rem;  /* Provides some space between the buttons and the text above */
+
 }
 
 /* Attributes that are common for both button types: */
@@ -237,10 +238,10 @@ of buttons increases. Maximum of 50 buttons. */
   grid-area: 6 / 7
 }
 .button-container :nth-child(17) {
-  grid-area: 2 / 3  /**/  
+  grid-area: 3 / 9 
 }
 .button-container :nth-child(18) {
-  grid-area: 3 / 8  /**/ 
+  grid-area: 3 / 8  
 }
 .button-container :nth-child(19) {
   grid-area: 4 / 2 
@@ -270,7 +271,7 @@ of buttons increases. Maximum of 50 buttons. */
   grid-area: 2 / 4 
 }
 .button-container :nth-child(28) {
-  grid-area: 5 / 2 
+  grid-area: 3 / 2 
 }
 .button-container :nth-child(29) {
   grid-area: 3 / 3
@@ -279,10 +280,10 @@ of buttons increases. Maximum of 50 buttons. */
   grid-area: 2 / 7
 }
 .button-container :nth-child(31) {
-  grid-area: 1 / 5
+  grid-area: 2 / 8  /* 31 bubbles */
 }
 .button-container :nth-child(32) {
-  grid-area: 3 / 2 
+  grid-area: 5 / 2 
 }
 .button-container :nth-child(33) {
   grid-area: 7 / 3 
