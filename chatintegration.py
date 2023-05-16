@@ -18,5 +18,4 @@ def get_description(yrke):
 
 #yrke = 'arborist'
  
-
 #get_description(yrke)

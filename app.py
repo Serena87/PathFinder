@@ -8,6 +8,7 @@ from chatintegration import get_description
 
 #Lägg till egen nyckel!
 openai.api_key = "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"
+#openai.api_key = "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" # Stines nyckel
 
 app = Flask(__name__)
 
