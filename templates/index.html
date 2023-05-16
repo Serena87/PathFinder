@@ -7,66 +7,81 @@
 
     <!-- JavaScript code here -->
     <script> 
+    // Handles the button clicks within the grid
     function handleClick(event) {
-    event.preventDefault();
-    var checkbox = event.currentTarget.querySelector("input[type=checkbox]");
-    checkbox.checked = !checkbox.checked;
+      event.preventDefault();
+      var checkbox = event.currentTarget.querySelector("input[type=checkbox]"); // all hidden checkboxes
+      checkbox.checked = !checkbox.checked;
+      var count = parseInt(document.getElementById("counter").innerHTML);   // Gets the current counter value
+      var selectedContainer = document.getElementById("selected_keywords"); // Gets the array element that contains the chosen, cloned buttons
+      var button = event.currentTarget.querySelector("button");             // Current button that is clicked
 
-        var count = parseInt(document.getElementById("counter").innerHTML); // Gets the current counter value
+      if (checkbox.checked) {                                       // if button is being clicked/marked, the checkbox is checked
+        if (count < 5) {                                            // check if number of clicked buttons are below 5
+          count += 1;                                               // the counter increments by 1
+          document.getElementById("counter").innerHTML = count;     // updates the counter number displayed
+          button.classList.add("clicked");                          // the button gets marked, class "clicked" and changes color
+          moveSelectedButton(button);                               // Moves the clone of the clicked button to selected keywords
+        }  
+      } 
+      else if (!checkbox.checked) {                               // if button is being unclicked/unmarked 
+        button.classList.remove("clicked");                       // the button gets unmarked, class "clicked" removed and the button gets its original color back
+        removeSelectedButton(button);                             // Remove the button from selected keywords/selectedContainer                                                 
+      }
+    }  
+    
+    // Clones and "moves" the selected buttons to the selected keyword "list"
+    function moveSelectedButton(button) {
+      var selectedContainer = document.getElementById("selected_keywords");
+      if (selectedContainer.children.length < 5) {
+        var clonedButton = button.parentNode.cloneNode(true);
+        var originalButton = clonedButton.querySelector("button");
+        originalButton.classList.remove("clicked");
+        selectedContainer.appendChild(clonedButton);
+      }
+    }
+    // Removes the cloned button from the list when unclicked in the grid
+    function removeSelectedButton(button) {
+      var selectedContainer = document.getElementById("selected_keywords");
+      var buttons = selectedContainer.querySelectorAll("button");
+      var count = parseInt(document.getElementById("counter").innerHTML);   // Gets the current counter value
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].textContent === button.textContent) {        // checks if the buttons are the same (word)
+          selectedContainer.removeChild(buttons[i].parentNode);     // if yes, remove the button from selectedContainer
+          count -= 1;                                               // decrements the counter by 1, since there is one less marked/chosen button
+          document.getElementById("counter").innerHTML = count;     // updates the counter displayed
+          break;
+        }
+      }
+    }
+    // Removes all buttons from selectedContainer and cleans the grid of marked buttons
+    function handleReset(event) {
+      event.preventDefault();
+      var checkboxes = document.querySelectorAll("input[type=checkbox]");
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+      }
+            
+      // Remove button color classes
+      var buttons = document.querySelectorAll("button");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("clicked");
+      }
+      // Clear selected keywords
+      var selectedContainer = document.getElementById("selected_keywords");
+      selectedContainer.innerHTML = "";
+      document.getElementById("counter").innerHTML = 0;
+    };
 
-            // Change button color based on checkbox state
-            var button = event.currentTarget.querySelector("button");
-            if (checkbox.checked) {
-                count += 1;
-                document.getElementById("counter").innerHTML = count;
-                button.classList.add("clicked");
-                moveSelectedButton(button); // Move the clicked button to selected keywords
-            
-            } else {
-                count -= 1;
-                document.getElementById("counter").innerHTML = count;
-                button.classList.remove("clicked");
-                removeSelectedButton(button); // Remove the button from selected keywords
-            }
-            
-        }
-        function moveSelectedButton(button) {
-            var selectedContainer = document.getElementById("selected_keywords");
-            var clonedButton = button.parentNode.cloneNode(true);
-            var originalButton = clonedButton.querySelector("button");
-            originalButton.classList.remove("clicked");
-            selectedContainer.appendChild(clonedButton);
-        
-        }
-        function removeSelectedButton(button) {
-            var selectedContainer = document.getElementById("selected_keywords");
-            var buttons = selectedContainer.querySelectorAll("button");
-            for (var i = 0; i < buttons.length; i++) {
-                if (buttons[i].textContent === button.textContent) {
-                    selectedContainer.removeChild(buttons[i].parentNode);
-                    break;
-                }
-            }
-        }
-        function handleReset(event) {
-            event.preventDefault();
-            var checkboxes = document.querySelectorAll("input[type=checkbox]");
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].checked = false;
-            }
-            
-            // Remove button color classes
-            var buttons = document.querySelectorAll("button");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("clicked");
-            }
-            // Clear selected keywords
-            var selectedContainer = document.getElementById("selected_keywords");
-            selectedContainer.innerHTML = "";
+    function validateForm() {
+      var count = parseInt(document.getElementById("counter").innerHTML);
+      if (count < 5) {
+        alert("Vänligen välj 5 nyckelord!");
+        return false;  // Prevents the form submission
+      }
+      return true;     // Allows the form submission
+    }
 
-            document.getElementById("counter").innerHTML = 0;
-        
-        };
 </script> <!-- End of JavaScript code -->
 
   </head>
@@ -79,13 +94,13 @@
     </div>
 
     <!-- Start of the request form -->
-    <form method='post'>
+    <form method='post' onsubmit = 'return validateForm()'>
     <div id= 'head_div'>
       <div id= 'head_border_div'>
         <div id = 'head_div_2'>
           <h3>Markerade nyckelord:</h3>
         </div>
-        <div id="counter">0</div>
+        <div id="counter">0</div><h6>av 5</h6>
         <img id="legend" src="https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/legend.jpg">
         <h1>Här kan du välja 5 nyckelord som du känner passar in på dig som person och vad du kan tänka dig att göra! 
           <br> Utifrån dina valda nyckelord ger vi dig rekommendationer på yrkesval som vi tror kan passa dig. Genom att markera och avmarkera bubblorna med nyckelord kan du lägga till och ta bort dem från listan med markerade nyckelord. 
