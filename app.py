@@ -7,7 +7,7 @@ import openai
 #from chatintegration import get_description 
 
 #Lägg till egen nyckel!
-#openai.api_key = "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" # Augusts nyckel
+#openai.api_key = "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" # Augusts nyckel
 #openai.api_key = "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" # Stines nyckel
 openai.api_key = "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" # Jonathans nyckel
 
