@@ -1,7 +1,7 @@
 import openai
 
 # use your own API
-openai.api_key = "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"
+#openai.api_key = "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" # Jonathans
 
 def get_description(yrke):
     print('matching job..')

@@ -14,6 +14,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import random
+import openai
 
 # Skickar ord att fylla bubblorna med till frontend.
 # Hämtar från fil
@@ -82,6 +83,19 @@ def get_occupation2(word1, word2, word3, word4, word5):
     # Rank occupations by similarity score and return top 5
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
+
+# Function that takes chosen job and searchs ChatGPT for info and then returns a decription
+def get_description(yrke):
+    print('matching job..')
+    completion = openai.ChatCompletion.create(
+    model = "gpt-3.5-turbo",
+    temperature = 0.2, # How ridgid or creative the answer chould be, 0.0 ridgid, 2.0 super creative
+    max_tokens = 1000, 
+    # promts for the chatbot
+    messages = [
+        {"role": "system", "content": "Du är en yrkesvägledare, beskriv yrket och förutspå framtiden för yrket."},
+        {"role": "user", "content": yrke}])
+    return(completion.choices[0].message.content)
 
 
 #print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))

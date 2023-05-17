@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for
 import time
-from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper
+from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper, get_description
 from list_work import list_mixer
 import random
 import openai
-from chatintegration import get_description 
+#from chatintegration import get_description 
 
 #Lägg till egen nyckel!
-openai.api_key = "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"
+#openai.api_key = "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" # Augusts nyckel
 #openai.api_key = "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" # Stines nyckel
+openai.api_key = "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" # Jonathans nyckel
+
 
 app = Flask(__name__)
 
