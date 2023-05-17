@@ -54,6 +54,7 @@
         border-radius: 5px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         padding: 10px;
+        cursor: pointer;
       }
 
       .description-container {
@@ -145,13 +146,18 @@
         {% endif %}
       </div>
       
-      <button id="back-button" onclick="window.history.back();">Gå tillbaka</button>
+      
       <div class="description-container">
         <div id="description"></div>
       </div>
       
+      <button id="back-button" onclick="window.history.back();">Gå tillbaka</button>
+
   <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const descriptionContainer = document.getElementById('description');
+    descriptionContainer.textContent = 'Klicka på ett yrke för att få information och framtidsprognos'; // Display "Click a button" message
+      
     const occupationButtons = document.querySelectorAll('form[action="/occupation_description"]');
 
     occupationButtons.forEach((button) => {
@@ -164,6 +170,9 @@
   });
 
   async function getDescription(occupation) {
+    const descriptionContainer = document.getElementById('description');
+    descriptionContainer.textContent = 'Laddar information om yrke..'; // Display "Loading..." message
+  
     const response = await fetch('/occupation_description', {
       method: 'POST',
       headers: {
