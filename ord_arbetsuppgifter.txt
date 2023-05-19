@@ -1,52 +1,103 @@
-Försäljning
-Marknadsföring
-Projektledning
-Tidsplanering
-Affärsutveckling
-Tidsplanering
-Affärsutveckling
-Ledarskap
-Forskning
-Produktutveckling
-Teknik
-Administration
-Ekonomi
-Kvalitet
-IT
-Design
-Hälso- och sjukvård
-Juridik
-Inköp
-Projektstyrning
-Human resources
-Rekrytering
-Affärsmannaskap
-Operativt arbete
-Skatt
-Redovisning
-Entreprenörskap
-Teamwork
-Inköpsstrategier
-Innovation
-Service
-Kundhantering
-Problemlösning
-Flexibilitet i arbetsmetoder
-Ekonomisk förståelse
-Organisationsförmåga
-Projektplanering
-Noggrannhet i arbete
-Kundrelationer
-Utveckling av affärsstrategier
-Teknisk expertis
-Effektiv kommunikation
-Flexibilitet i förändring
-Kundtjänst
-Utveckling av kreativa lösningar
-Resultatfokus
-Projektgenomförande
-Utbildning
-Produkthantering
-Medicinsk kunskap
-Juridisk rådgivning
-Effektiv logistikhantering
+Sälja 
+Marknadsföra 
+Projektledning 
+Tidsplanering 
+Affärsutveckling 
+Leda 
+Forska 
+Produktutveckling 
+Teknik 
+Administrera 
+Ekonomi 
+Kvalitetsarbete 
+IT 
+Designa 
+Hälsovård 
+Sjukvård 
+Juridik 
+Inköp 
+Styra projekt 
+Personalutveckling 
+Arbetsmiljöfrågor 
+Personalpolitik 
+Rekrytera 
+Göra affärer 
+Operera 
+Kontorsarbete 
+Fysiskt arbete 
+Skatt 
+Redovisning 
+Entreprenörskap 
+Teamwork 
+Inköp 
+Innovation 
+Service 
+Problemlösning 
+Ekonomi 
+Projektplanering 
+Kundrelationer 
+Utveckla affärsstrategier 
+Kommunikation 
+Variation 
+Kundtjänst 
+Utveckla kreativa lösningar 
+Projekt 
+Utbilda 
+Produkthantering 
+Medicin 
+Juridisk rådgivning 
+Logistik 
+Resa 
+Hållbarhet 
+Siffror 
+Statistik 
+Snickra 
+Måla 
+Bygga 
+Vårda 
+Stödja 
+Samtala 
+Spel 
+Anläggning 
+System 
+Nätverk 
+Bank 
+Bilar 
+Ensamarbete 
+Event 
+Fastighet 
+Marknadsföring 
+Fordon 
+Köra 
+Inredning 
+Militär 
+Mat 
+Människor 
+Tillverkning 
+Drift 
+Ingenjör 
+Elektronik 
+Flygplan 
+Bevakning 
+Båt 
+Distansarbete 
+Skönhet 
+Hår 
+Säkerhet 
+Kultur 
+Transport 
+Grafik 
+Naturen 
+Vetenskap 
+Miljö 
+Skola 
+Samarbete 
+Pedagogik 
+Barn 
+Ungdomar 
+Äldre
+Redigera film
+Redigera bilder
+Fotografera
+Media
+Kultur
