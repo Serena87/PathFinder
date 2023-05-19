@@ -93,7 +93,7 @@ def get_description(yrke):
     max_tokens = 1000, 
     # promts for the chatbot
     messages = [
-        {"role": "system", "content": "Du är en yrkesvägledare, beskriv yrket och förutspå framtiden för yrket."},
+        {"role": "system", "content": "Du är en yrkesvägledare, beskriv yrket och förutspå framtiden för yrket, var kritisk i analysen."},
         {"role": "user", "content": yrke}])
     return(completion.choices[0].message.content)
 
