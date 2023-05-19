@@ -6,10 +6,8 @@ import random
 import openai
 #from chatintegration import get_description 
 
-#Lägg till egen nyckel!
-#openai.api_key = "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" # Augusts nyckel
-#openai.api_key = "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" # Stines nyckel
-openai.api_key = "" # Jonathans nyckel
+#Lägg till egen nyckel! Om den ligger kvar/sparas och commitas förstörs den!!
+openai.api_key = "" # Din privata nyckel
 
 
 app = Flask(__name__)
