@@ -127,7 +127,7 @@
 
       #back-button {
         display: block;
-        margin: 20px auto;
+        margin: 100px auto;
         padding: 10px 20px;
         border-color: #9FD33C;
         border-width: 2px;
@@ -157,6 +157,39 @@
 
 
       }
+
+      .loadlogo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #9FD33C;
+        font-size: 24px;
+        font-weight: bold;
+        position: relative;
+      }
+
+      .boxarrow {
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 1px;
+        background-color: #9FD33C;
+        animation: arrowAnimation 1s infinite;
+      }
+
+      @keyframes arrowAnimation {
+        0% {
+          width: 10px;
+        }
+        50% {
+          width: 87.5px;
+        }
+        100% {
+          width: 10px;
+      }
+}
     </style>
   </head>
   <body>
@@ -191,40 +224,62 @@
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const descriptionContainer = document.getElementById('description');
-    descriptionContainer.textContent = 'Klicka på ett yrke för att få information och framtidsprognos'; // Display "Click a button" message
+  const descriptionContainer = document.getElementById('description');
+  descriptionContainer.textContent = 'Klicka på ett yrke för att få information och framtidsprognos'; // Display "Click a button" message
+  
+  // Function to display the loading symbol in the description container
+  function displayLoadingSymbol() {
+    descriptionContainer.innerHTML = `
+      <div class="loading-symbol">
+        <div class="loadlogo">Hämtar yrkesbeskrivning<span class="boxarrow"></span></div>
+      </div>
+    `;
+  }
+  
+  // Function to display the occupation description
+  function displayDescription(description) {
+    descriptionContainer.innerHTML = description;
+  }
+  
+  const occupationButtons = document.querySelectorAll('form[action="/occupation_description"]');
+  
+  occupationButtons.forEach((button) => {
+    button.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const occupation = button.querySelector('input[name="occupation"]').value;
       
-    const occupationButtons = document.querySelectorAll('form[action="/occupation_description"]');
-
-    occupationButtons.forEach((button) => {
-      button.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const occupation = button.querySelector('input[name="occupation"]').value;
-        getDescription(occupation);
-      });
+      // Display the loading symbol before making the request
+      displayLoadingSymbol();
+      
+      // Make the request to retrieve the occupation description
+      getDescription(occupation);
     });
   });
+});
 
-  async function getDescription(occupation) {
-    const descriptionContainer = document.getElementById('description');
-    descriptionContainer.textContent = 'Laddar information om yrke..'; // Display "Loading..." message
+async function getDescription(occupation) {
+  const descriptionContainer = document.getElementById('description');
   
-    const response = await fetch('/occupation_description', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `occupation=${encodeURIComponent(occupation)}`,
-    });
+  const response = await fetch('/occupation_description', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `occupation=${encodeURIComponent(occupation)}`,
+  });
 
-    const description = await response.text();
-    displayDescription(description);
-  }
+  const description = await response.text();
+  
+  // Display the retrieved occupation description
+  displayDescription(description);
+}
 
-  function displayDescription(description) {
+function displayDescription(description) {
     const descriptionContainer = document.getElementById('description');
     descriptionContainer.textContent = description;
   }
+
+
 </script>
 
     <script>
@@ -236,6 +291,7 @@
     </script>
   </body>
 </html>
+
 
 
 
