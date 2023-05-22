@@ -22,7 +22,9 @@
           document.getElementById("counter").innerHTML = count;     // updates the counter number displayed
           button.classList.add("clicked");                          // the button gets marked, class "clicked" and changes color
           moveSelectedButton(button);                               // Moves the clone of the clicked button to selected keywords
-        }  
+        } else {
+          checkbox.checked = false;
+        } 
       } 
       else if (!checkbox.checked) {                               // if button is being unclicked/unmarked 
         button.classList.remove("clicked");                       // the button gets unmarked, class "clicked" removed and the button gets its original color back
@@ -37,6 +39,7 @@
         var clonedButton = button.parentNode.cloneNode(true);
         var originalButton = clonedButton.querySelector("button");
         originalButton.classList.remove("clicked");
+        originalButton.disabled = true; // Disable the cloned button
         selectedContainer.appendChild(clonedButton);
       }
     }
@@ -89,7 +92,7 @@
   <body> 
     <div class="center-container">
       <div class="center-content">
-        <img id= 'logo' src = 'https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/pathfinder_logga.jpg'>
+        <img id= 'logo' src = 'https://raw.githubusercontent.com/Serena87/PathFinder/main/templates/pathfinder_logo.jpg'>
       </div>
     </div>
 
