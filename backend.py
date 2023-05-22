@@ -90,10 +90,10 @@ def get_description(yrke):
     completion = openai.ChatCompletion.create(
     model = "gpt-3.5-turbo",
     temperature = 0.2, # How ridgid or creative the answer chould be, 0.0 ridgid, 2.0 super creative
-    max_tokens = 1000, 
+    max_tokens = 1500, 
     # promts for the chatbot
     messages = [
-        {"role": "system", "content": "beskriv och förutspå framtiden för yrket, 3 bra saker med yrket i 1,2,3-form och vilken utbildning som behövs"},
+        {"role": "system", "content": "beskriv yrket och ge en realistisk framtidsprognos yrket, 3 bra saker med yrket i 1,2,3-form och vilken utbildning som behövs"},
         {"role": "user", "content": yrke}])
     return(completion.choices[0].message.content)
 
