@@ -233,8 +233,17 @@
   
   // Function to display the occupation description
   function displayDescription(description) {
-    descriptionContainer.innerHTML = description;
-  }
+  const descriptionContainer = document.getElementById('description');
+  
+  // Split the description into paragraphs
+  const paragraphs = description.split('\n');
+  
+  // Generate the HTML for paragraphs
+  const paragraphsHTML = paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('');
+  
+  // Set the formatted description in the container
+  descriptionContainer.innerHTML = paragraphsHTML;
+}
   
   const occupationButtons = document.querySelectorAll('form[action="/occupation_description"]');
   
@@ -272,6 +281,14 @@ async function getDescription(occupation) {
 function displayDescription(description) {
     const descriptionContainer = document.getElementById('description');
     descriptionContainer.textContent = description;
+    // Split the description into paragraphs
+  const paragraphs = description.split('\n');
+  
+  // Generate the HTML for paragraphs
+  const paragraphsHTML = paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('');
+  
+  // Set the formatted description in the container
+  descriptionContainer.innerHTML = paragraphsHTML;
   }
 
 
