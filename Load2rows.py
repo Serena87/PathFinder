@@ -17,7 +17,7 @@ replace_dict = {'OM TJÄNSTEN': ' ', 'ARBETSUPPGIFTER': ' ', 'VI SÖKER DIG SOM'
 
 
 # read the file called 2022.json that is in the same directory and call it jobtech_dataset
-jobtech_dataset = pd.read_csv('jobtech_dataset2022.csv')
+jobtech_dataset = pd.read_csv('jobtech_temp2022Rall_UPDATED.csv')
 # #show the variables names (columns) in the dataset
 print(jobtech_dataset.columns)
 #show the first 3 rows (job postings) in the dataset
@@ -89,4 +89,4 @@ new_df = pd.DataFrame({'occupation': occupations, 'description': occupation_desc
 print(new_df)
 
 # save the new dataframe to a CSV file
-new_df.to_csv('dataset2022.csv', index=False)
+new_df.to_csv('dataset2022UPDATED.csv', index=False)
