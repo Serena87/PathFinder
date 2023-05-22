@@ -166,7 +166,7 @@ h5 {
   float: left;
   margin-right: 2px;
   height: 40px;
-  
+  width: 90px;
   padding: 10px 20px;
   border-color: #9FD33C;
   border-width: 2px;
@@ -179,10 +179,12 @@ h5 {
 /* Style specific for the Submit button */
 #submitButton { 
   margin-left: 5px;
+  max-width: 90px;
 }
 /* Style specific for the Reset button */
 #resetButton {
   margin-left: 300px;
+  max-width: 90px;
 }
 
 /* Puts the buttons in their positions within the 9x9 grid, creating a round form.
