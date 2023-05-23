@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper, get_description
 from list_work import list_mixer
 import openai
