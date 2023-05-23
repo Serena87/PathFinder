@@ -1,14 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
-import time
+from flask import Flask, render_template, request
 from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper, get_description
 from list_work import list_mixer
-import random
 import openai
-#from chatintegration import get_description 
 
 #Lägg till egen nyckel! Om den ligger kvar/sparas och commitas förstörs den!!
 openai.api_key = "" # Din privata nyckel
-
 
 app = Flask(__name__)
 
@@ -24,7 +20,6 @@ def button_cluster():
     button_keywords_attributes = get_egenskaper() # from backend, list with 15 personal attributes
     button_keywords_tasks = get_arbetsuppgifter() # from backend, list with 15 work tasks
     button_keywords_mixed = list_mixer(button_keywords_attributes, button_keywords_tasks) # adding the two lists together to new list with 30 words
-    random.shuffle(button_keywords_mixed) # Shuffles the words in the list so that they are mixed before creating the buttons/bubbles with the list
 
     # Read the button templates from the html files:
     with open('templates/blue_button_template.html', 'r', encoding = 'utf-8') as fblue:

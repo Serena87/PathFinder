@@ -19,18 +19,6 @@ import openai
 # Skickar ord att fylla bubblorna med till frontend.
 # Hämtar från fil
 
-def get_random_words():
-    with open(('ord_till_frontend.txt'), 'r', encoding = 'utf-8') as file:
-        words = file.read().splitlines()
-    
-    if 50 >= len(words):
-        return words
-    
-    random_words = random.sample(words, 50)
-    return random_words
-
-## Gets 15 egenskaper
-
 def get_egenskaper():
     with open(('ord_egenskaper.txt'), 'r', encoding='utf-8') as file:
         words = file.read().splitlines()
