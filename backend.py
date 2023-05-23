@@ -45,16 +45,19 @@ def get_arbetsuppgifter():
 
 ## Takes x amount of words, returns 5 suitable occupations using cosine similarity. Used by frontend. 
 
-def get_occupation2(word1, word2, word3, word4, word5):
+##Pre process creating vector space
     # Load occupation data
-    print('Reading dataset...')
-    df = pd.read_csv('dataset2022.csv')
-    print('dataset read!')
+print('Reading dataset...')
+df = pd.read_csv('det_senaste_datasetet.csv')
+print('dataset read!')
 
     # Preprocess occupation descriptions. Puts words into vectors for each  
-    print('Processing occupation descriptions...')
-    tfidf = TfidfVectorizer()
-    description_vectors = tfidf.fit_transform(df['description'].fillna(''))
+print('Processing occupation descriptions...')
+tfidf = TfidfVectorizer()
+description_vectors = tfidf.fit_transform(df['description'].fillna(''))
+
+def get_occupation2(word1, word2, word3, word4, word5):
+
 
     # Create input vector by transforming a string containing three words (word1, word2, and word3) 
     # using the same TfidfVectorizer instance. The resulting vector is stored in a variable called "input_vector".
