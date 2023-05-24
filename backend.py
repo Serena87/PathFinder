@@ -80,7 +80,7 @@ def get_description(yrke):
     print('matching job..')
     completion = openai.ChatCompletion.create(
     model = "gpt-3.5-turbo",
-    temperature = 0.2, # How ridgid or creative the answer chould be, 0.0 ridgid, 2.0 super creative
+    temperature = 0.6, # How ridgid or creative the answer chould be, 0.0 ridgid, 2.0 super creative
     max_tokens = 1500, 
     # promts for the chatbot
     messages = [
