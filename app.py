@@ -8,7 +8,7 @@ openai.api_key = "" # Din privata nyckel
 
 app = Flask(__name__)
 
-@app.route('/pathfinder')
+@app.route('/')
 def intro_page():
     return render_template('intro.html')
 
