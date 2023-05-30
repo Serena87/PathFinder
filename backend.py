@@ -48,7 +48,8 @@ def get_arbetsuppgifter():
 ##Pre process creating vector space
     # Load occupation data
 print('Reading dataset...')
-df = pd.read_csv('dataset2022UPDATED.csv')
+#df = pd.read_csv('dataset2022UPDATED.csv') # Hela 2022, för stort för GitHub
+df = pd.read_csv('dataset2022.csv') # Mindre dataset (20MB) för körning på hemsidan
 print('dataset read!')
 
     # Preprocess occupation descriptions. Puts words into vectors for each  
