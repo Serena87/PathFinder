@@ -3,8 +3,8 @@ from backend import get_occupation2, get_arbetsuppgifter, get_egenskaper, get_de
 from list_work import list_mixer
 import openai
 
-#Lägg till egen nyckel! Om den ligger kvar/sparas och commitas förstörs den!!
-openai.api_key = "" # Din privata nyckel
+#Paste your own key before running the app and be sure to delete it before commiting or else it get invalid.
+openai.api_key = "" # Your private key from openail
 
 app = Flask(__name__)
 
@@ -76,7 +76,7 @@ def button_cluster():
     # Render the HTML code as a response
     return html
 
-# Ny route som hanterar requests
+# New route that handles requests
 @app.route('/occupation_description', methods=['POST'])
 def occupation_description():
     if request.method == 'POST':
