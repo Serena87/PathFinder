@@ -1,14 +1,3 @@
-# HEJ Front-end!!
-# Ropa på get_random_words för en lista på 50 ord skapad av en människa
-# Ropa på get_egenskaper() för en lista på 50 egenskaper
-# Ropa på get_arbetsuppgifter() för en lista på 50 arbetsuppgifter
-# Ropa på get_occupation2 och skicka in upp till 5 ord och få tillbaka en lista på 5 yrken
-# 3-5 ord fungerar bäst. Om ni skickar färre än 5, skicka med tomma strängar för resterande ord t.ex 
-# Get_occupation('hjälpsam', 'noggrann', 'ledning', '', '')
-# Ni får snabbt tillbaka en lista på 5 occupations som passar
-# Varma hälsningar
-
-
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -16,8 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import random
 import openai
 
-# Skickar ord att fylla bubblorna med till frontend.
-# Hämtar från fil
+# Provides frontend with words for the bubbles. 
 
 def get_egenskaper():
     with open(('ord_egenskaper.txt'), 'r', encoding='utf-8') as file:
@@ -30,8 +18,6 @@ def get_egenskaper():
 
     return random_words
 
-# Gets 15 arbetsuppgifter
-
 def get_arbetsuppgifter():
     with open(('ord_arbetsuppgifter.txt'), 'r', encoding='utf-8') as file:
         words = file.read().splitlines()
@@ -43,19 +29,24 @@ def get_arbetsuppgifter():
 
     return random_words
 
-## Takes x amount of words, returns 5 suitable occupations using cosine similarity. Used by frontend. 
 
-##Pre process creating vector space
+##### COSINE SIMILARITY PROCESSING #####
+#  Takes x amount of words, returns 5 suitable occupations using cosine similarity. Used by frontend. 
+
+## Pre-process creating vector space
     # Load occupation data
 print('Reading dataset...')
-#df = pd.read_csv('dataset2022UPDATED.csv') # Hela 2022, för stort för GitHub
-df = pd.read_csv('dataset2022.csv') # Mindre dataset (20MB) för körning på hemsidan
+#df = pd.read_csv('dataset2022UPDATED.csv') # Entire 2022 dataset, too big for Github and deployment.
+df = pd.read_csv('dataset2022.csv') # Smallar dataset (20mb) for MVP use
 print('dataset read!')
 
     # Preprocess occupation descriptions. Puts words into vectors for each  
 print('Processing occupation descriptions...')
 tfidf = TfidfVectorizer()
 description_vectors = tfidf.fit_transform(df['description'].fillna(''))
+
+
+# Provides frontend with occupation recommendations.
 
 def get_occupation2(word1, word2, word3, word4, word5):
 
@@ -76,6 +67,7 @@ def get_occupation2(word1, word2, word3, word4, word5):
     top_occupations = np.argsort(similarity_scores, axis=1)[:, -5:].squeeze()[::-1]
     return df.iloc[top_occupations]['occupation'].tolist()
 
+## CHATGPT API IMPLEMENTATION ##
 # Function that takes chosen job and searchs ChatGPT for info and then returns a decription
 def get_description(yrke):
     print('matching job..')
@@ -88,8 +80,3 @@ def get_description(yrke):
         {"role": "system", "content": "beskriv yrket och ge en realistisk framtidsprognos yrket, 3 bra saker med yrket i 1,2,3-form och vilken utbildning som behövs, använd bara information från Sverige"},
         {"role": "user", "content": yrke}])
     return(completion.choices[0].message.content)
-
-
-#print(get_occupation2('säkerhet', 'människor', 'social', 'utåtriktad', 'vakt'))
-
-
