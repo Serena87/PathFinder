@@ -5,6 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>PathFinder</title>
 
+    <style>
+      /* CSS code goes here */
+      .info-button {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          padding: 10px 20px;
+          background-color: #9FD33C;
+          color: #00002c;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          font-family: 'Inria Sans';
+          font-size: 16px;
+      }
+
+      .overlay {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value to change the darkness */
+         z-index: 9998; /* Ensure the overlay appears below the popup window */
+         display: none; /* Initially hide the overlay */
+      }
+
+      .info-popup {
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 20px;
+          background-color: #ffffff;
+          border: 1px solid #9FD33C;
+          border-radius: 5px;
+          z-index: 9999;
+          font-family: 'Inria Sans';
+          font-size: 16px;
+          color: #000000;
+      }
+
+      .info-popup .popup-title {
+          text-align: center; /* Center-align the title */
+          font-weight: bold; /* Make the title bold */
+          margin-top: 5px;
+          margin-bottom: 15px;
+          font-size: 22px;
+      } 
+
+      .info-popup p {
+          margin: 5px 0;
+      }
+
+      .developer-divider {
+         margin-top: 20px;
+      }
+
+      .button-divider {
+         margin-top: 30px;
+      }
+
+      .info-popup .close-button {
+          position: fixed;
+          bottom: 10px;
+          right: 10px;
+          background-color: #9FD33C;
+          color: #00002c;
+          border: none;
+          border-radius: 3px;
+          padding: 5px 10px;
+          cursor: pointer;
+      }
+  </style>
+
+</head>
+
     <!-- JavaScript code here -->
     <script> 
     // Handles the button clicks within the grid
@@ -85,6 +163,23 @@
       return true;     // Allows the form submission
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+  const infoButton = document.getElementById('info-button');
+  const infoPopup = document.querySelector('.info-popup');
+  const overlay = document.querySelector('.overlay');
+  const closeButton = infoPopup.querySelector('.close-button');
+
+  infoButton.addEventListener('click', () => {
+    infoPopup.style.display = 'block';
+    overlay.style.display = 'block';
+  });
+
+  closeButton.addEventListener('click', () => {
+    infoPopup.style.display = 'none';
+    overlay.style.display = 'none';
+  });
+});
+
 </script> <!-- End of JavaScript code -->
 
   </head>
@@ -114,7 +209,55 @@
         <div id="selected_keywords"></div>
         <input id = "submitButton" type="submit" value="Skicka in"><input id = "resetButton" type='reset' value='Återställ' onclick='handleReset(event)'>
       </div>
+
+      <!-- Contact Information Button -->
+      <button id="info-button" class="info-button" type="button">Kontaktuppgifter</button>
+
+    </form>
+
+     <!-- Info Popup HTML code -->
+     <div class="overlay"></div>
+     <div class="info-popup">
+      <p class="popup-title">Kontaktuppgifter:</p>
+      <p><strong>Utvecklare 1:</strong> August Krantz</p>
+      <p><strong>Email:</strong> aggekrantz099@gmail.com</p>
+      <div class="developer-divider"></div>
+      <p><strong>Utvecklare 2:</strong> Fabian Fredlund</p>
+      <p><strong>Email:</strong> fabian.fredlund@gmail.com</p>
+      <div class="developer-divider"></div>
+      <p><strong>Utvecklare 3:</strong> Jonathan Starke</p>
+      <p><strong>Email:</strong> starkejonathan@gmail.com</p>
+      <div class="developer-divider"></div>
+      <p><strong>Utvecklare 4:</strong> Stine Venseth</p>
+      <p><strong>Email:</strong> stine.venseth@hotmail.com</p>
+      <div class="developer-divider"></div>
+      <p><strong>Utvecklare 5:</strong> Vincent Isegran Bohman</p>
+      <p><strong>Email:</strong> vincent.isegranbohman@gmail.com</p>
+      <div class="button-divider"></div>
+      <button class="close-button" type="button">Stäng</button>
     </div>
+
+      <!-- JavaScript code for the contact information button -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const infoButton = document.getElementById('info-button');
+            const infoPopup = document.querySelector('.info-popup');
+    
+            infoButton.addEventListener('click', () => {
+                infoPopup.style.display = 'block';
+            });
+    
+            document.addEventListener('click', (event) => {
+                if (event.target.classList.contains('close-button')) {
+                    infoPopup.style.display = 'none';
+                }
+            });
+        });
+        </script>
+    
+    </body>
+    </html>
+
     <!-- Continuing in app.py with generating HTML for the buttons/bubbles-->
     
     
